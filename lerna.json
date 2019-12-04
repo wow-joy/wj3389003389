@@ -2,16 +2,15 @@
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": [
-    "packages/*",
-    "docs"
-  ],
+  "packages": ["packages/*", "docs"],
   "command": {
     "publish": {
-      "ignoreChanges": [
-        "ignored-file",
-        "*.md"
-      ]
+      "ignoreChanges": ["ignored-file", "*.md"],
+      "verifyAccess": false,
+      "verifyRegistry": false,
+      "message": "chore: publish",
+      "allowBranch": "master",
+      "conventionalCommits": true
     }
   }
 }

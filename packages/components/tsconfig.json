@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noErrorTruncation": true,
+    "types": ["react", "node"],
+    "baseUrl": "./",
+    "paths": {
+      "@wowjoy/hooks": ["../hooks/src"],
+      "@wowjoy/hooks/*": ["../hooks/src/*"],
+      "@wowjoy/icons": ["../icons/src"],
+      "@wowjoy/icons/*": ["../icons/src/*"]
+    }
+  },
+  "exclude": ["**/build/", "**/*.test.ts", "node_modules"]
+}

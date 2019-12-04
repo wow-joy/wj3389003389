@@ -1,0 +1,38 @@
+{
+  "name": "@wowjoy/icons",
+  "version": "0.0.1-alpha.1",
+  "private": false,
+  "author": "Wowjoy Team",
+  "description": "Wowjoy React svg icons",
+  "keywords": [
+    "react",
+    "svg icons",
+    "wowjoy"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wow-joy/wowjoy.git",
+    "directory": "packages/icons"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wow-joy/wowjoy/issues"
+  },
+  "homepage": "https://github.com/wow-joy",
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "dependencies": {
+    "styled-components": "^4.4.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}

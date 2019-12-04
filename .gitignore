@@ -1,1 +1,10 @@
+.idea
+.vscode
+*.log
+.DS_STORE
+/.eslintcache
+**/lib
+**/es
+packages/**/node_modules
 node_modules
+package-lock.json
