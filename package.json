@@ -10,6 +10,7 @@
   "main": "index.js",
   "scripts": {
     "build": "father build",
+    "build:watch": "father build --watch",
     "prettier": "prettier --write **/*.{js,jsx,tsx,ts,json} !**/es/** !**/lib/**",
     "changelog": "lerna-changelog"
   },
