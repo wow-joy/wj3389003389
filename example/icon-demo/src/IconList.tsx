@@ -16,8 +16,8 @@ const IconWrap = styled.div`
 function IconList() {
   return (
     <Wrap>
-      {Object.values(Icons).map(Icon => (
-        <IconWrap>
+      {Object.entries(Icons).map(([key, Icon]) => (
+        <IconWrap key={key}>
           <Icon />
         </IconWrap>
       ))}
