@@ -13,7 +13,8 @@
     "test": "jest",
     "docz:dev": "father doc dev",
     "docz:build": "father doc build",
-    "now-build": "father doc build"
+    "now-build": "father doc build",
+    "publish": "lerna publish from-package"
   },
   "husky": {
     "hooks": {
