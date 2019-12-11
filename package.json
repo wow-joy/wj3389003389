@@ -15,7 +15,8 @@
     "changelog": "lerna-changelog",
     "test": "jest",
     "docz:dev": "father doc dev",
-    "docz:build": "father doc build"
+    "docz:build": "father doc build",
+    "now-build": "father doc build"
   },
   "husky": {
     "hooks": {
