@@ -1,8 +1,8 @@
-English | [简体中文](./README-zh_CN.md)
+[English](./README.md) | 简体中文
 
 <h1 align="center">Wowjoy</h1>
 <div align="center">
-Wowjoy products.
+Wowjoy 产品.
 
 [![Build Status](https://travis-ci.org/wow-joy/wowjoy.svg?branch=master)](https://travis-ci.org/wow-joy/wowjoy)
 
@@ -10,7 +10,7 @@ Wowjoy products.
 
 </div>
 
-## 📦 Install
+## 📦 安装
 
 ```bash
 npm install @wowjoy/core @wowjoy/ui @wowjoy/icons @wowjoy/hooks
@@ -19,4 +19,4 @@ npm install @wowjoy/core @wowjoy/ui @wowjoy/icons @wowjoy/hooks
 ```bash
 yarn add @wowjoy/core @wowjoy/ui @wowjoy/icons @wowjoy/hooks
 ```
-## 🔨 Usage
+## 🔨 使用
