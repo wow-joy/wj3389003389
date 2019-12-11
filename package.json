@@ -13,7 +13,9 @@
     "build:watch": "father build --watch",
     "prettier": "prettier --write **/*.{js,jsx,tsx,ts,json} !**/es/** !**/lib/**",
     "changelog": "lerna-changelog",
-    "test": "jest"
+    "test": "jest",
+    "docz:dev": "father doc dev",
+    "docz:build": "father doc build"
   },
   "husky": {
     "hooks": {
@@ -45,7 +47,6 @@
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "lerna": "^3.18.1",
-    "lerna-changelog": "^0.8.2",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
     "react": "^16.10.2",

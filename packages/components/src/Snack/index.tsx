@@ -59,7 +59,18 @@ function createSnack(type: SnackType) {
   };
 }
 
-const snack = {
+export interface SnackProps {
+  /**
+   * A description of the prop that you seem fit :)
+   */
+  success: (msg: string, duration: number, onClose?: () => any) => any;
+  error: (msg: string, duration: number, onClose?: () => any) => any;
+  info: (msg: string, duration: number, onClose?: () => any) => any;
+  warning: (msg: string, duration: number, onClose?: () => any) => any;
+  config: (config: Config) => any;
+  destroy: () => any;
+}
+const message: SnackProps = {
   success: createSnack('success'),
   error: createSnack('error'),
   info: createSnack('info'),
@@ -75,4 +86,4 @@ const snack = {
   },
 };
 
-export default snack;
+export default message;

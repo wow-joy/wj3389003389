@@ -1,1 +1,2 @@
-export { default as snack } from './Snack';
+export { default as Snack } from './Snack';
+export { default as Button } from './Button';
