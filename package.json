@@ -6,14 +6,15 @@
   ],
   "description": "Wowjoy product",
   "scripts": {
-    "build": "father build",
+    "build": "npm run clean && father build",
     "build:watch": "father build --watch",
     "prettier": "prettier --write **/*.{js,jsx,tsx,ts,json} !**/es/** !**/lib/**",
     "changelog": "lerna-changelog",
     "test": "jest",
-    "docz:dev": "father doc dev",
-    "docz:build": "father doc build",
-    "now-build": "father doc build",
+    "clean": "rm -rf packages/**/es packages/**/lib .docz .doc",
+    "docz:dev": "npm run build && father doc dev",
+    "docz:build": "npm run build && father doc build",
+    "now-build": "npm run docz:build",
     "publish": "lerna publish from-package"
   },
   "husky": {
