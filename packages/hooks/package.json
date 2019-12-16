@@ -8,6 +8,10 @@
     "react",
     "wowjoy"
   ],
+  "files": [
+    "lib",
+    "es"
+  ],
   "main": "lib/index.js",
   "module": "es/index.js",
   "repository": {
