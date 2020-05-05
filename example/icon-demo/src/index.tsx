@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IconList from './IconList';
+import App from './App';
 
-ReactDOM.render(<IconList />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

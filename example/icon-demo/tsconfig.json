@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "react",
@@ -13,7 +14,7 @@
     "baseUrl": "./",
     "paths": {
       "@wowjoy/icons": ["../../packages/icons/src"],
-      "@wowjoy/icons/*": ["../../packages/icons/src/*"],
+      "@wowjoy/icons/*": ["../../packages/icons/src/*"]
     }
   },
   "exclude": ["**/build/", "**/*.test.ts", "**/node_modules"]

@@ -12,7 +12,7 @@
     "changelog": "lerna-changelog",
     "test": "jest",
     "clean": "rm -rf packages/**/es packages/**/lib .docz .doc",
-    "docz:dev": "npm run build && father doc dev",
+    "docz:dev": "npm run build --watch && father doc dev",
     "docz:build": "npm run build && father doc build",
     "now-build": "npm run docz:build",
     "publish": "lerna publish from-package"
@@ -51,7 +51,7 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-test-renderer": "^16.12.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.8.3"
   },
   "dependencies": {}
 }

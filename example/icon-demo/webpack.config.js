@@ -12,12 +12,16 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /.tsx?$/, exclude: /node_modules/, loader: 'ts-loader' },
+      {
+        test: /.tsx?$/,
+        exclude: /node_modules/,
+        use: [{ loader: 'babel-loader' }, { loader: 'ts-loader' }],
+      },
       { test: /.js$/, exclude: /node_modules/, loader: 'babel-loader' },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [
     new CleanWebpackPlugin(),
