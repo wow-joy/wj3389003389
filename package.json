@@ -4,7 +4,7 @@
     "packages/*",
     "example/*"
   ],
-  "description": "Wowjoy product",
+  "description": "Wowjoy front",
   "scripts": {
     "build": "npm run clean && father build",
     "build:watch": "father build --watch",
@@ -12,8 +12,8 @@
     "changelog": "lerna-changelog",
     "test": "jest",
     "clean": "rm -rf packages/**/es packages/**/lib .docz .doc",
-    "docz:dev": "npm run build --watch && father doc dev",
-    "docz:build": "npm run build && father doc build",
+    "doc:dev": "dumi dev",
+    "doc:build": "dumi build",
     "now-build": "npm run docz:build",
     "publish": "lerna publish from-package"
   },
@@ -30,7 +30,7 @@
     ]
   },
   "author": "gitHber",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -42,6 +42,7 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "docz": "^2.1.1",
+    "dumi": "^1.0.31",
     "father": "^2.28.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",

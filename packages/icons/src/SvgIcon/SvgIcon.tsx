@@ -14,8 +14,7 @@ const SvgIcon = styled.svg`
   display: inline-block;
   user-select: none;
   flex-shrink: 0;
-  font-size: 1.5rem;
-  transition: fill 200ms cubic-bezier() 0cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
 export default React.forwardRef(({ style, children, ...other }: Props, ref: any) => {

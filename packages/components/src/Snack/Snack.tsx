@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
 import { CheckCircle, CloseCircle, InfoCircle, WarningCircle } from '@wowjoy/icons';
+import styled, { keyframes } from 'styled-components';
 
 export type SnackType = 'success' | 'error' | 'info' | 'warning';
 

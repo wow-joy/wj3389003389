@@ -15,6 +15,7 @@
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
+  "dev": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/wow-joy/wowjoy.git",
@@ -26,11 +27,12 @@
   },
   "homepage": "https://github.com/wow-joy",
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6",
+    "react": "^16.8.6"
   },
   "dependencies": {
-    "styled-components": "^4.4.0"
+    "styled-components": "^5.1.1",
+    "@types/styled-components": "^5.1.0"
   },
   "sideEffects": false,
   "publishConfig": {
@@ -38,8 +40,5 @@
   },
   "engines": {
     "node": ">=8.0.0"
-  },
-  "devDependencies": {
-    "@types/styled-components": "^5.1.0"
   }
 }

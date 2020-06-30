@@ -11,10 +11,12 @@
   ],
   "files": [
     "lib",
-    "es"
+    "es",
+    "src"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
+  "dev": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/wow-joy/wowjoy.git",
@@ -26,16 +28,23 @@
   },
   "homepage": "https://github.com/wow-joy/wowjoy",
   "peerDependencies": {
-    "@wowjoy/hooks": "^0.0.1-alpha.1",
-    "@wowjoy/icons": "^0.0.1-alpha.1",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "clsx": "^1.1.0",
+    "@wowjoy/hooks": "^0.0.1-alpha.1",
+    "@wowjoy/icons": "^0.0.1-alpha.1",
     "react-spring": "^8.0.27",
     "react-transition-group": "^4.3.0",
-    "styled-components": "^4.4.0"
+    "clsx": "^1.1.0",
+    "styled-components": "^5.1.1",
+    "@types/styled-components": "^5.1.0"
   },
   "sideEffects": false,
   "publishConfig": {
@@ -45,6 +54,6 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.0"
+    "@types/react-transition-group": "^4.4.0"
   }
 }

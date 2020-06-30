@@ -9,4 +9,6 @@ packages/**/node_modules
 node_modules
 package-lock.json
 .docz
-.doc
+.umi
+.umi-production
+dist

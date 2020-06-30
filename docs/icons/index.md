@@ -1,12 +1,39 @@
+---
+title: 图标
+sidemenu: false
+---
+
+## 安装
+
+```
+yarn add @wowjoy/core
+```
+
+## 自定义图标
+
+```js
+import createSvgIcon from '@wowjoy/icons/utils/createSvgIcon';
+export default createSvgIcon(
+  <React.Fragment>
+    <path d=""></path>
+  </React.Fragment>,
+  'IconDisplayName',
+);
+```
+
+```tsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import * as Icons from '@wowjoy/icons';
 import styled from 'styled-components';
-import t from 'prop-types';
 
 const Wrap = styled.div`
   margin: 40px;
   line-height: 40px;
 `;
+
 const Item = styled.div<{ [key: string]: any }>`
   display: inline-flex;
   flex-direction: column;
@@ -83,14 +110,5 @@ function IconList() {
     </Wrap>
   );
 }
-export interface IconListProps {
-  className: string;
-}
-IconList.propTypes = {
-  className: t.string,
-};
-IconList.defaultProps = {
-  className: '',
-};
-
 export default IconList;
+```

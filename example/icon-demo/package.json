@@ -4,8 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --open --hot",
-    "build": "webpack"
+    "start": "webpack-dev-server --open --hot"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +22,8 @@
     "@types/styled-components": "^5.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.13.0",
-    "ts-loader": "^6.2.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"

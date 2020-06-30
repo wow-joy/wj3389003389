@@ -15,13 +15,13 @@ module.exports = {
       {
         test: /.tsx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }, { loader: 'ts-loader' }],
+        use: [{ loader: 'ts-loader' }],
       },
-      { test: /.js$/, exclude: /node_modules/, loader: 'babel-loader' },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    mainFields: ['dev', 'browser', 'module', 'main'],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -32,5 +32,6 @@ module.exports = {
   ],
   devServer: {
     port: 9000,
+    host: '0.0.0.0',
   },
 };
