@@ -14,7 +14,7 @@
     "clean": "rm -rf packages/**/es packages/**/lib .docz .doc",
     "doc:dev": "dumi dev",
     "doc:build": "dumi build",
-    "now-build": "npm run docz:build",
+    "now-build": "npm run doc:build",
     "publish": "lerna publish from-package"
   },
   "husky": {
