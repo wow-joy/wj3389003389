@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useEffect, useLayoutEffect } from 'react';
-import styled, { withWowTheme, keyframes, DefaultTheme, css } from '../styled';
+import styled, { withWowTheme, keyframes, DefaultTheme, css } from '@wowjoy/styled';
 import { useEventCallback } from '@wowjoy/hooks';
 
 const useEnhancedEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
@@ -50,7 +50,7 @@ const RippleChild = styled.span<{
   ${p => p.leaving && childInvisible(p.timeout)}
 `;
 
-export interface Props extends HTMLAttributes<HTMLSpanElement> {
+export interface Props extends React.HTMLAttributes<HTMLSpanElement> {
   rippleSize: number;
   rippleX: number;
   rippleY: number;

@@ -1,6 +1,6 @@
 ---
 group:
-  title: 通用组件
+  title: Inputs 输入框
 title: Input 文本框
 ---
 

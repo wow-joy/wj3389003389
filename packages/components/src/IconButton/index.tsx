@@ -1,6 +1,6 @@
 import React from 'react';
+import styled, { withWowTheme, Palette, Colors } from '@wowjoy/styled';
 import ButtonBase, { Props as ButtonBaseProps } from '../ButtonBase';
-import styled, { withWowTheme, Palette } from '../styled';
 
 const StyleIconButton = styled(ButtonBase).attrs((p: Props) => ({
   ...p,
@@ -25,7 +25,7 @@ const StyleIconButton = styled(ButtonBase).attrs((p: Props) => ({
         }
         &:active {
           background: ${p =>
-            p.notContained ? p.theme.palette[p.color].light2 : p.theme.palette[p.color].dark};
+            p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark};
           border-color: ${p => (p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'none')};
         }
       `}
@@ -53,9 +53,9 @@ export interface Props extends ButtonBaseProps {
   sizeOpt?: SizeOpt;
   disabled?: boolean;
   href?: string;
-  color?: Exclude<keyof Palette, 'text'>;
+  color?: Colors;
 }
-const IconButton: React.ForwardRefRenderFunction<HTMLElement, Props> = (
+const IconButton: React.FC<Props> = (
   {
     variant = 'contained',
     size = 'medium',

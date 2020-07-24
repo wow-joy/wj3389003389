@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noErrorTruncation": true,
+    "types": ["react", "node"],
+    "baseUrl": "./",
+    "paths": {}
+  },
+  "exclude": ["**/build/", "**/*.test.ts", "node_modules"]
+}

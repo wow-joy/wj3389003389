@@ -5,5 +5,5 @@ export default function useEventCallback<T extends (...args: any[]) => any>(hand
   useEffect(() => {
     holder.current = handler;
   });
-  return React.useCallback<T>(((...args: any[]) => holder.current(...args)) as T, []);
+  return useCallback<T>(((...args: any[]) => holder.current(...args)) as T, []);
 }

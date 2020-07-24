@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import styled, { withWowTheme } from '../styled';
+import styled, { withWowTheme } from '@wowjoy/styled';
 import clsx from 'clsx';
 
 const StyleWrap = styled.span`
@@ -9,9 +9,11 @@ const StyleWrap = styled.span`
     border-radius: 0;
   }
   *:first-child {
+    border-right: none;
     border-radius: ${p => p.theme.shape.borderRadius}px 0 0 ${p => p.theme.shape.borderRadius}px;
   }
   *:last-child {
+    border-left: none;
     border-radius: 0 ${p => p.theme.shape.borderRadius}px ${p => p.theme.shape.borderRadius}px 0;
   }
 `;

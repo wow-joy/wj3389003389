@@ -1,3 +1,4 @@
+import { ExtractByType } from './utils/type';
 export interface BreakPoints<T extends {} = {}> {
   values: T;
   up: (key: keyof T) => string;
@@ -11,9 +12,12 @@ interface Color {
   light?: string;
   dark?: string;
   light1?: string;
-  light2?: string;
+  dark1?: string;
   contrastText?: string;
 }
+
+export type Colors = ExtractByType<Palette, Color>;
+
 export interface Palette {
   primary: Color;
   secondary: Color;
@@ -22,11 +26,44 @@ export interface Palette {
   success: Color;
   info: Color;
   question: Color;
+  background: {
+    default: string;
+    level1: string;
+    level2: string;
+    level3: string;
+  };
+  divider: string;
+  disabled: string;
+  grey: {
+    borderColor: string;
+    1: string;
+    2: string;
+    3: string;
+    4: string;
+    5: string;
+    6: string;
+    7: string;
+    8: string;
+    9: string;
+    10: string;
+    11: string;
+    12: string;
+    13: string;
+    14: string;
+    15: string;
+    16: string;
+  };
   text: {
     primary: string;
     secondary: string;
     hint: string;
-    disabled: string;
+    buttonHint?: string;
+  };
+  link: {
+    normal: string;
+    hover: string;
+    active: string;
+    visited: string;
   };
 }
 export interface TextColor {

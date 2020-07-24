@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState, useImperativeHandle, useRef, useCallback } from 'react';
 import Ripple, { Props } from './Ripple';
-import styled from '../styled';
+import styled from '@wowjoy/styled';
 import { TransitionGroup } from 'react-transition-group';
 
 const DURATION = 550;

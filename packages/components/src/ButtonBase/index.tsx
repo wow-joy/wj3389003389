@@ -1,6 +1,6 @@
 import { useEventCallback } from '@wowjoy/hooks';
+import styled, { withWowTheme } from '@wowjoy/styled';
 import React, { useRef } from 'react';
-import styled, { withWowTheme } from '../styled';
 import TouchRipple, { RefProps } from './TouchRipple';
 
 const StyleButtonBase = styled.button`
@@ -21,14 +21,12 @@ const StyleButtonBase = styled.button`
   }
 `;
 
-export interface Props
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    React.DOMAttributes<HTMLButtonElement> {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   enableTouchRipple?: boolean;
   center?: boolean;
   component?: keyof JSX.IntrinsicElements;
 }
-const ButtonBase: React.ForwardRefRenderFunction<HTMLElement, Props> = (
+const ButtonBase: React.FC<Props> = (
   {
     children,
     component = 'button',

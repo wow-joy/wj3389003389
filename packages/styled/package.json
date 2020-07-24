@@ -1,0 +1,53 @@
+{
+  "name": "@wowjoy/styled",
+  "version": "0.0.1-alpha.1",
+  "private": false,
+  "author": "Wowjoy Team",
+  "description": "Wowjoy React components",
+  "keywords": [
+    "react",
+    "react-component",
+    "wowjoy"
+  ],
+  "files": [
+    "lib",
+    "es",
+    "src"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "dev": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wow-joy/wowjoy.git",
+    "directory": "packages/styled"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wow-joy/wowjoy/issues"
+  },
+  "homepage": "https://github.com/wow-joy/wowjoy",
+  "peerDependencies": {
+    "@types/react": "^16.8.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "clsx": "^1.1.0",
+    "styled-components": "^5.1.1",
+    "@types/styled-components": "^5.1.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "devDependencies": {}
+}

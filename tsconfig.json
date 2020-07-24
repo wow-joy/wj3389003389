@@ -14,6 +14,8 @@
     "paths": {
       "@wowjoy/core": ["./packages/components/src"],
       "@wowjoy/core/*": ["./packages/components/src/*"],
+      "@wowjoy/styled": ["./packages/styled/src"],
+      "@wowjoy/styled/*": ["./packages/styled/src/*"],
       "@wowjoy/hooks": ["./packages/hooks/src"],
       "@wowjoy/hooks/*": ["./packages/hooks/src/*"],
       "@wowjoy/icons": ["./packages/icons/src"],

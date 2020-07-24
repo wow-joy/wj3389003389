@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import styled, { withWowTheme } from '../styled';
+import styled, { withWowTheme } from '@wowjoy/styled';
 import Input from '../Input';
 import InputGroup from '../InputGroup';
+import ButtonBase from '../ButtonBase';
+
 import { Search as SearchIcon } from '@wowjoy/icons';
 
-const StyleIconWrap = styled.span`
+const StyleIconWrap = styled(ButtonBase)`
   background: ${p => p.theme.palette.primary.main};
   display: inline-flex;
   align-items: center;
@@ -29,7 +31,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement>, React.DOMAttri
   allowClear?: boolean;
 }
 
-const Search: React.ForwardRefRenderFunction<HTMLSpanElement, Props> = (
+const Search: React.FC<Props> = (
   {
     size = 'medium',
     allowClear = false,

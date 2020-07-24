@@ -1,5 +1,5 @@
 import { Theme } from './theming';
-import deepmerge from '../_util/deepmerge';
+import deepmerge from './utils/deepmerge';
 
 const values = { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 };
 export const defaultTheme: Theme<typeof values> = {
@@ -14,9 +14,9 @@ export const defaultTheme: Theme<typeof values> = {
     primary: {
       main: '#198EEB',
       light: '#4FB1FF',
-      light1: '#ECF8FF',
-      light2: '#D1EBFF',
       dark: '#197BC9',
+      light1: '#ECF8FF',
+      dark1: '#D1EBFF',
       contrastText: '#FFF',
     },
     secondary: {
@@ -59,7 +59,39 @@ export const defaultTheme: Theme<typeof values> = {
       primary: '#333',
       secondary: '#666',
       hint: '#999',
-      disabled: '#ccc',
+    },
+    background: {
+      default: '#fff',
+      level1: '#F4F5F6',
+      level2: '#F5F7F8',
+      level3: '#F9F9F9',
+    },
+    grey: {
+      borderColor: '#dcdcdc',
+      1: '#FAFAFA',
+      2: '#FAFAFA',
+      3: '#FAFAFA',
+      4: '#FAFAFA',
+      5: '#FAFAFA',
+      6: '#FAFAFA',
+      7: '#FAFAFA',
+      8: '#FAFAFA',
+      9: '#FAFAFA',
+      10: '#FAFAFA',
+      11: '#FAFAFA',
+      12: '#FAFAFA',
+      13: '#FAFAFA',
+      14: '#FAFAFA',
+      15: '#FAFAFA',
+      16: '#FAFAFA',
+    },
+    divider: '#979797',
+    disabled: '#ccc',
+    link: {
+      normal: '#3B8FD9',
+      hover: '#0F6CB2',
+      active: '#0F6CB2',
+      visited: '#0F6CB2',
     },
   },
   shadows: [
