@@ -6,6 +6,7 @@
   ],
   "description": "Wowjoy front",
   "scripts": {
+    "install": "lerna bootstrap",
     "build": "npm run clean && father build",
     "build:watch": "father build --watch",
     "prettier": "prettier --write **/*.{js,jsx,tsx,ts,json} !**/es/** !**/lib/**",
