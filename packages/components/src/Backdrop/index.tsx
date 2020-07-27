@@ -1,6 +1,6 @@
 import React from 'react';
-import styled, { withWowTheme } from '@wowjoy/styled';
-import { Fade, FadeProps } from '../transitions';
+import styled, { withWowTheme, DefaultTheme } from '@wowjoy/styled';
+import { Fade } from '../transitions';
 import clsx from 'clsx';
 
 const Template = styled.div`
@@ -20,17 +20,30 @@ const Template = styled.div`
   }
 `;
 
-export interface Props extends FadeProps, Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   invisible?: boolean;
   className?: string;
+  TransitionComponent?: React.ComponentType;
+  TransitionProps?: any;
+  theme: DefaultTheme;
+  in: boolean;
 }
-const Backdrop: React.FC<Props> = ({ invisible = false, children, theme, className, ...props }) => {
+const Backdrop: React.FC<Props> = ({
+  invisible = false,
+  TransitionComponent = Fade,
+  children,
+  TransitionProps,
+  theme,
+  className,
+  in: inProps,
+  ...props
+}) => {
   return (
-    <Fade {...props}>
-      <Template theme={theme} className={clsx(className, { invisible: invisible })}>
+    <TransitionComponent in={inProps} {...TransitionProps}>
+      <Template theme={theme} className={clsx(className, { invisible: invisible })} {...props}>
         {children}
       </Template>
-    </Fade>
+    </TransitionComponent>
   );
 };
 

@@ -7,5 +7,6 @@
       "use": "@now/static-build",
       "config": { "distDir": "docs-dist" }
     }
-  ]
+  ],
+  "redirects": [{ "source": "/*", "destination": "/index.html" }]
 }

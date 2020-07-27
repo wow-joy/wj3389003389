@@ -72,23 +72,6 @@ const Wrap = styled.div`
     }
   }
 `;
-const Arrow = styled.div`
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 10px;
-    height: 10px;
-    box-shadow: 1px 1px 2px #000;
-    transform: translateX(0) rotate(45deg);
-    transition: transform 0.2s ease-out 0s, visibility 0.2s ease-out 0s;
-    z-index: -1;
-  }
-  position: absolute;
-  left: -4px;
-`;
 
 export default function() {
   const ref = useRef(null);

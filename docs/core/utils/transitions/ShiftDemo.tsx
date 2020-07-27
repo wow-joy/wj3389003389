@@ -19,11 +19,20 @@ export default () => {
       <br />
       <b>Direction</b>
       <Radio
-        options={['left', 'right', 'top', 'bottom']}
+        options={['top', 'bottom', 'left', 'right']}
         value={direction}
         onChange={setDirection}
       />
-      <Shift direction={direction as any} movement="100px" in={open} timeout={1000}>
+      <Shift
+        direction={direction as any}
+        movement="100px"
+        in={open}
+        timeout={{
+          appear: 300,
+          enter: 0,
+          exit: 0,
+        }}
+      >
         <div style={{ height: 100, width: 100, background: 'red' }} />
       </Shift>
     </>

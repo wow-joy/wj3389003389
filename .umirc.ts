@@ -1,5 +1,6 @@
 export default {
   title: 'Wowjoy',
+  // history: { type: 'hash' },
   mode: 'site',
   favicon: 'https://avatars3.githubusercontent.com/u/40052020?s=200&v=4',
   logo: 'https://avatars3.githubusercontent.com/u/40052020?s=200&v=4',

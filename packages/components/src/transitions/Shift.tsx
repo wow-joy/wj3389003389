@@ -2,7 +2,7 @@ import React from 'react';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { Transition } from 'react-transition-group';
 import { useWowTheme } from '@wowjoy/styled';
-import useForkRef from '../utils/useForkRef';
+import { useForkRef } from '@wowjoy/hooks';
 
 const directionStyles = {
   left: ['translateX', '-'],

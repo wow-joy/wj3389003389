@@ -10,7 +10,6 @@ export default withWowTheme<
     border: none;
     outline: none;
     padding: 0;
-    background: transparent;
     &::placeholder {
       font-size: 14px;
       padding: 0;

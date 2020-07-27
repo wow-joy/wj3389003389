@@ -1,9 +1,7 @@
 import ReactDOM from 'react-dom';
-import React, { useRef, useCallback, useEffect } from 'react';
-import { useEventCallback } from '@wowjoy/hooks';
+import React, { useRef, useEffect } from 'react';
+import { useEventCallback, useForkRef } from '@wowjoy/hooks';
 import ownerDocument from '../utils/ownerDocument';
-import useForkRef from '../utils/useForkRef';
-import { DisableCheckbox } from '@wowjoy/icons';
 
 export interface Props {
   children?: React.ReactElement;
