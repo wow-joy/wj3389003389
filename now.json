@@ -8,5 +8,11 @@
       "config": { "distDir": "docs-dist" }
     }
   ],
-  "redirects": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "routes": [
+    { "handle": "filesystem" },
+    {
+      "src": "^.*",
+      "dest": "/"
+    }
+  ]
 }
