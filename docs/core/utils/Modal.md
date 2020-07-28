@@ -32,7 +32,7 @@ export default () => {
       <Button variant="contained" onClick={() => setOpen(true)}>
         Open
       </Button>
-      <Modal open={open} onClose={() => setOpen(false)} BackdropProps={{ timeout: 3000 }}>
+      <Modal open={open} onClose={() => setOpen(false)} BackdropProps={{ timeout: 250 }}>
         <Content>
           <h2>Modal</h2>
           <p>Content</p>

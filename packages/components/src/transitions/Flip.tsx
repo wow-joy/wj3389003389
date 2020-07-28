@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import useForkRef from '../utils/useForkRef';
+import { useForkRef } from '@wowjoy/hooks';
 
 const Flip: React.FC = ({ children }) => {
   const ref = useRef();

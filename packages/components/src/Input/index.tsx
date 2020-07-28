@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withWowTheme, css, borderCss } from '@wowjoy/styled';
+import styled, { withWowTheme, css, borderCss, DefaultTheme } from '@wowjoy/styled';
 import { useControlState } from '@wowjoy/hooks';
 import { CloseFillCircle } from '@wowjoy/icons';
 import clsx from 'clsx';
@@ -72,6 +72,7 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLElement>, 'size' | 
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   sizeOpt?: SizeOpt;
+  theme?: DefaultTheme;
 }
 
 type PropsWithoutSize = Omit<Props, 'size'> & { size: 'small' | 'medium' | 'large' };
@@ -94,6 +95,7 @@ const Input: React.FC<Props> = (
   },
   ref,
 ) => {
+  const { theme } = props;
   const isControlled = 'value' in props;
   const [value, setValue] = useControlState(isControlled, props.value, defaultValue);
   const handleChange = e => {
@@ -148,6 +150,7 @@ const Input: React.FC<Props> = (
           className={clsx('WowInput-input-clear', {
             'WowInput-clear-visible': Boolean(value),
           })}
+          theme={theme}
           onClick={handleClear}
         />
       )}

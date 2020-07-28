@@ -48,7 +48,7 @@ const Modal: React.FC<Props> = ({
 }) => {
   const posRef = useRef(null);
   const theme = useWowTheme();
-  const timeout = BackdropProps?.timeout || {
+  const timeout = {
     appear: theme.transitions.duration.enteringScreen,
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
@@ -72,7 +72,6 @@ const Modal: React.FC<Props> = ({
       posRef.current = null;
     };
   }, []);
-  // if (!open) return null;
   return (
     <Portal container={container} {...props}>
       <Transition

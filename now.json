@@ -7,5 +7,12 @@
       "use": "@now/static-build",
       "config": { "distDir": "docs-dist" }
     }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    {
+      "src": "^.*",
+      "dest": "/"
+    }
   ]
 }

@@ -8,12 +8,16 @@ const StyleWrap = styled.span`
   * {
     border-radius: 0;
   }
+  *:hover {
+    z-index: 1;
+  }
+  *:not(:last-child) {
+    margin-right: -1px;
+  }
   *:first-child {
-    border-right: none;
     border-radius: ${p => p.theme.shape.borderRadius}px 0 0 ${p => p.theme.shape.borderRadius}px;
   }
   *:last-child {
-    border-left: none;
     border-radius: 0 ${p => p.theme.shape.borderRadius}px ${p => p.theme.shape.borderRadius}px 0;
   }
 `;

@@ -12,3 +12,4 @@ package-lock.json
 .umi
 .umi-production
 dist
+.vercel

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM, { createPortal } from 'react-dom';
-import setRef from '../utils/setRef';
-import useForkRef from '../utils/useForkRef';
+import { setRef, useForkRef } from '@wowjoy/hooks';
 
 function getContainer(container: Props['container']) {
   container = typeof container === 'function' ? container() : container;

@@ -2,7 +2,7 @@ import React from 'react';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { Transition } from 'react-transition-group';
 import { useWowTheme } from '@wowjoy/styled';
-import useForkRef from '../utils/useForkRef';
+import { useForkRef } from '@wowjoy/hooks';
 
 const styles = {
   entering: { opacity: 0 },
@@ -28,9 +28,8 @@ export const Fade: React.ForwardRefExoticComponent<FadeProps> = React.forwardRef
     timeout = timeout === undefined ? defaultTimeout : timeout;
     return (
       <Transition appear timeout={timeout} {...props}>
-        {(state, childProps) => {
-          console.log(state, childProps);
-          return React.cloneElement(children, {
+        {(state, childProps) =>
+          React.cloneElement(children, {
             style: {
               transition: `opacity ${typeof timeout === 'object' ? timeout.appear : timeout}ms ${
                 theme.transitions.easing.easeInOut
@@ -41,8 +40,8 @@ export const Fade: React.ForwardRefExoticComponent<FadeProps> = React.forwardRef
             },
             ref: handleRef,
             ...childProps,
-          });
-        }}
+          })
+        }
       </Transition>
     );
   },
