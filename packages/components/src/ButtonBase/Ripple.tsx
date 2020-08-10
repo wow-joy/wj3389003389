@@ -1,6 +1,7 @@
-import React, { HTMLAttributes, useEffect, useLayoutEffect } from 'react';
-import styled, { withWowTheme, keyframes, DefaultTheme, css } from '@wowjoy/styled';
 import { useEventCallback } from '@wowjoy/hooks';
+import styled, { css, DefaultTheme, keyframes, useWowTheme } from '@wowjoy/styled';
+import React, { useEffect, useLayoutEffect } from 'react';
+import clsx from 'clsx';
 
 const useEnhancedEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
@@ -61,44 +62,45 @@ export interface Props extends React.HTMLAttributes<HTMLSpanElement> {
   theme?: DefaultTheme;
 }
 
-export const Ripple: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
-  {
-    rippleSize,
-    rippleX,
-    rippleY,
-    in: inProp = false,
-    onExited = () => {},
-    theme,
-    timeout,
-    ...props
+export const Ripple = React.forwardRef<HTMLDivElement, Props>(
+  (
+    { rippleSize, rippleX, rippleY, in: inProp = false, onExited = () => {}, timeout, ...props },
+    ref,
+  ) => {
+    const [leaving, setLeaving] = React.useState(false);
+    const theme = useWowTheme();
+    const rippleStyles = {
+      width: rippleSize,
+      height: rippleSize,
+      top: rippleY - rippleSize / 2,
+      left: rippleX - rippleSize / 2,
+    };
+
+    const handleExited = useEventCallback(onExited);
+
+    useEnhancedEffect(() => {
+      if (!inProp) {
+        setLeaving(true);
+        const timeoutId = setTimeout(handleExited, timeout);
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }
+      return undefined;
+    }, [inProp, handleExited]);
+
+    return (
+      <RippleWrap
+        ref={ref}
+        style={rippleStyles}
+        timeout={timeout}
+        theme={theme}
+        {...props}
+        className={clsx('WowRipple-root', props.className)}
+      >
+        <RippleChild leaving={leaving} timeout={timeout} theme={theme} />
+      </RippleWrap>
+    );
   },
-  ref,
-) => {
-  const [leaving, setLeaving] = React.useState(false);
-  const rippleStyles = {
-    width: rippleSize,
-    height: rippleSize,
-    top: rippleY - rippleSize / 2,
-    left: rippleX - rippleSize / 2,
-  };
-
-  const handleExited = useEventCallback(onExited);
-
-  useEnhancedEffect(() => {
-    if (!inProp) {
-      setLeaving(true);
-      const timeoutId = setTimeout(handleExited, timeout);
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-    return undefined;
-  }, [inProp, handleExited]);
-
-  return (
-    <RippleWrap ref={ref} style={rippleStyles} timeout={timeout} theme={theme} {...props}>
-      <RippleChild leaving={leaving} timeout={timeout} theme={theme} />
-    </RippleWrap>
-  );
-};
-export default withWowTheme(Ripple, 'WowRipple-root');
+);
+export default Ripple;

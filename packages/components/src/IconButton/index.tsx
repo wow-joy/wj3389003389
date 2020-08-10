@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { withWowTheme, Palette, Colors } from '@wowjoy/styled';
+import styled, { useWowTheme, Colors } from '@wowjoy/styled';
 import ButtonBase, { Props as ButtonBaseProps } from '../ButtonBase';
+import clsx from 'clsx';
 
 const StyleIconButton = styled(ButtonBase).attrs((p: Props) => ({
   ...p,
@@ -24,9 +25,10 @@ const StyleIconButton = styled(ButtonBase).attrs((p: Props) => ({
           };
         }
         &:active {
-          background: ${p =>
-            p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark};
-          border-color: ${p => (p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'none')};
+          background: ${
+            p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark
+          };
+          border-color: none;
         }
       `}
 `;
@@ -55,42 +57,47 @@ export interface Props extends ButtonBaseProps {
   href?: string;
   color?: Colors;
 }
-const IconButton: React.FC<Props> = (
-  {
-    variant = 'contained',
-    size = 'medium',
-    color = 'primary',
-    disabled = false,
-    sizeOpt = {
-      small: {
-        fontSize: 12,
+const IconButton = React.forwardRef<any, Props>(
+  (
+    {
+      variant = 'contained',
+      size = 'medium',
+      color = 'primary',
+      disabled = false,
+      sizeOpt = {
+        small: {
+          fontSize: 12,
+        },
+        medium: {
+          fontSize: 24,
+        },
+        large: {
+          fontSize: 35,
+        },
       },
-      medium: {
-        fontSize: 24,
-      },
-      large: {
-        fontSize: 35,
-      },
+      children,
+      ...props
     },
-    children,
-    ...props
+    ref,
+  ) => {
+    const theme = useWowTheme();
+    return (
+      <StyleIconButton
+        ref={ref}
+        center
+        variant={variant}
+        size={size}
+        sizeOpt={sizeOpt}
+        color={color}
+        disabled={disabled}
+        {...props}
+        theme={theme}
+        className={clsx('WowIconButton-root', props.className)}
+      >
+        <IconLabel className="WowIconButton-label">{children}</IconLabel>
+      </StyleIconButton>
+    );
   },
-  ref,
-) => {
-  return (
-    <StyleIconButton
-      ref={ref}
-      center
-      variant={variant}
-      size={size}
-      sizeOpt={sizeOpt}
-      color={color}
-      disabled={disabled}
-      {...props}
-    >
-      <IconLabel className="WowIconButton-label">{children}</IconLabel>
-    </StyleIconButton>
-  );
-};
+);
 
-export default withWowTheme(IconButton, 'WowIconButton-root');
+export default IconButton;

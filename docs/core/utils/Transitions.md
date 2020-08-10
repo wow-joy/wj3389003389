@@ -36,9 +36,9 @@ export default () => {
 
 <code src="./transitions/CollapseDemo.tsx" />
 
-## Shift 移入移出
+## Slide 移入移出
 
-<code src="./transitions/ShiftDemo.tsx" />
+<code src="./transitions/SlideDemo.tsx" />
 
 ## [BaseProps](https://reactcommunity.org/react-transition-group/transition)
 
@@ -49,7 +49,7 @@ export default () => {
 | direction | 方向 | 'center' \| 'left' \| 'right' \|'top' \|'bottom' \|'topLeft' \| 'topRight' \| 'bottomLeft' \| 'bottomRight' | center |
 | attr | 属性 | 'width' \| 'height' \| 'both' | both |
 
-## Shift Props
+## Slide Props
 
 | 参数      | 说明     | 类型                                 | 默认值 |
 | :-------- | :------- | :----------------------------------- | :----- |

@@ -1,7 +1,8 @@
 import { useEventCallback } from '@wowjoy/hooks';
-import styled, { withWowTheme } from '@wowjoy/styled';
+import styled, { useWowTheme } from '@wowjoy/styled';
 import React, { useRef } from 'react';
 import TouchRipple, { RefProps } from './TouchRipple';
+import clsx from 'clsx';
 
 const StyleButtonBase = styled.button`
   display: inline-flex;
@@ -10,9 +11,9 @@ const StyleButtonBase = styled.button`
   position: relative;
   border: 0;
   cursor: pointer;
-  line-height: 1;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms ${p => p.theme.transitions.easing.easeInOut} 0ms,
+    box-shadow 250ms ${p => p.theme.transitions.easing.easeInOut} 0ms,
+    border 250ms ${p => p.theme.transitions.easing.easeInOut} 0ms;
   .WowButton-label {
     width: 100%;
   }
@@ -26,56 +27,63 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   center?: boolean;
   component?: keyof JSX.IntrinsicElements;
 }
-const ButtonBase: React.FC<Props> = (
-  {
-    children,
-    component = 'button',
-    enableTouchRipple = true,
-    center = false,
-    onMouseDown,
-    onMouseUp,
-    onMouseLeave,
-    onTouchMove,
-    onTouchStart,
-    onTouchEnd,
-    ...props
+const ButtonBase = React.forwardRef<any, Props>(
+  (
+    {
+      children,
+      component = 'button',
+      enableTouchRipple = true,
+      center = false,
+      onMouseDown,
+      onMouseUp,
+      onMouseLeave,
+      onTouchMove,
+      onTouchStart,
+      onTouchEnd,
+      ...props
+    },
+    ref,
+  ) => {
+    const rippleRef = useRef<RefProps>();
+    const theme = useWowTheme();
+    const useRippleHnadler = (
+      rippleAction,
+      eventCallback,
+      skipRippleAction = !enableTouchRipple,
+    ) => {
+      return useEventCallback(event => {
+        if (!skipRippleAction && rippleRef) {
+          rippleRef.current[rippleAction](event);
+        }
+        eventCallback?.();
+        return true;
+      });
+    };
+    const handleMouseDown = useRippleHnadler('start', onMouseDown);
+    const handleMouseUp = useRippleHnadler('stop', onMouseUp);
+    const handleMouseLeave = useRippleHnadler('stop', onMouseLeave);
+    const handleTouchStart = useRippleHnadler('start', onTouchStart);
+    const handleTouchEnd = useRippleHnadler('stop', onTouchEnd);
+    const handleTouchMove = useRippleHnadler('stop', onTouchMove);
+    return (
+      <StyleButtonBase
+        {...props}
+        className={clsx('WowButtonBase-root', props.className)}
+        theme={theme}
+        ref={ref}
+        as={component as any}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
+      >
+        {children}
+        {enableTouchRipple ? <TouchRipple ref={rippleRef} center={center} /> : null}
+      </StyleButtonBase>
+    );
   },
-  ref,
-) => {
-  const rippleRef = useRef<RefProps>();
+);
 
-  const useRippleHnadler = (rippleAction, eventCallback, skipRippleAction = !enableTouchRipple) => {
-    return useEventCallback(event => {
-      if (!skipRippleAction && rippleRef) {
-        rippleRef.current[rippleAction](event);
-      }
-      eventCallback?.();
-      return true;
-    });
-  };
-
-  const handleMouseDown = useRippleHnadler('start', onMouseDown);
-  const handleMouseUp = useRippleHnadler('stop', onMouseUp);
-  const handleMouseLeave = useRippleHnadler('stop', onMouseLeave);
-  const handleTouchStart = useRippleHnadler('start', onTouchStart);
-  const handleTouchEnd = useRippleHnadler('stop', onTouchEnd);
-  const handleTouchMove = useRippleHnadler('stop', onTouchMove);
-  return (
-    <StyleButtonBase
-      {...props}
-      ref={ref}
-      as={component as any}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
-    >
-      {children}
-      {enableTouchRipple ? <TouchRipple ref={rippleRef} center={center} /> : null}
-    </StyleButtonBase>
-  );
-};
-
-export default withWowTheme(ButtonBase, 'WowButtonBase-root');
+export default ButtonBase;

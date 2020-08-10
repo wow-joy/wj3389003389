@@ -23,6 +23,8 @@ export const defaultTheme: Theme<typeof values> = {
       main: '#F5F5F5',
       light: '#FFF',
       dark: '#F0F0F0',
+      light1: '#fff',
+      dark1: '#f0f0f0',
       contrastText: '#666',
     },
     error: {

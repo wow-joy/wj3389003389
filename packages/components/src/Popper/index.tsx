@@ -75,6 +75,7 @@ export interface Props {
   TransitionComponent?: React.ComponentType;
   TransitionProps?: any;
   PortalProps?: PortalProps;
+  modifiers?: any[];
 }
 
 const Popper = React.forwardRef<any, Props>(
@@ -93,6 +94,7 @@ const Popper = React.forwardRef<any, Props>(
       TransitionProps = {},
       PortalProps,
       open,
+      modifiers = [],
       ...props
     },
     ref,
@@ -110,6 +112,7 @@ const Popper = React.forwardRef<any, Props>(
             offset: [0, 8],
           },
         },
+        ...modifiers,
       ],
       placement,
     });
@@ -123,7 +126,7 @@ const Popper = React.forwardRef<any, Props>(
           ref: handleRef,
         })}
         <Portal {...PortalProps}>
-          <TransitionComponent {...TransitionProps} in={open}>
+          <TransitionComponent mountOnEnter unmountOnExit {...TransitionProps} in={open}>
             <PopperWrap
               ref={handlePopperRef}
               theme={theme}

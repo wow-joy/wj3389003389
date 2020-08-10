@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Icons from '@wowjoy/icons';
-import styled from 'styled-components';
+import styled from '@wowjoy/styled';
 
 const Wrap = styled.div`
   display: flex;

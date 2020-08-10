@@ -1,10 +1,10 @@
 ---
 group:
   title: Utils 工具包
-title: Popover 文本框
+title: Popover 弹出框
 ---
 
-# TextField 文本框
+# Popover 弹出框
 
 ```tsx
 /**
@@ -12,10 +12,19 @@ title: Popover 文本框
  */
 
 import React from 'react';
-import { TextField } from '@wowjoy/core';
-const Space = () => <span style={{ marginLeft: 10 }}></span>;
+import { Button, Popover } from '@wowjoy/core';
+import { useToggle } from '@wowjoy/hooks';
 
-export default () => <TextField placeholder="请输入" />;
+export default () => {
+  const ref = React.useRef();
+  const [inProp, toggle] = useToggle(false);
+
+  return (
+    <Popover ref={ref} open={inProp} content="Hi, I'm a tip!" onClose={() => toggle(false)}>
+      <Button onClick={() => toggle()}>open</Button>
+    </Popover>
+  );
+};
 ```
 
 ## TextField Props

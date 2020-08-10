@@ -3,7 +3,7 @@ import {
   ButtonBase,
   Backdrop,
   Collapse,
-  Shift,
+  Slide,
   Fade,
   ClickAwayListener,
   Portal,

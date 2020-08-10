@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withWowTheme, DefaultTheme } from '@wowjoy/styled';
+import styled, { useWowTheme, DefaultTheme } from '@wowjoy/styled';
 import { Fade } from '../transitions';
 import clsx from 'clsx';
 
@@ -25,26 +25,30 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'child
   className?: string;
   TransitionComponent?: React.ComponentType;
   TransitionProps?: any;
-  theme: DefaultTheme;
-  in: boolean;
+  theme?: DefaultTheme;
+  in?: boolean;
 }
 const Backdrop: React.FC<Props> = ({
   invisible = false,
   TransitionComponent = Fade,
   children,
   TransitionProps,
-  theme,
   className,
   in: inProps,
   ...props
 }) => {
+  const theme = useWowTheme();
   return (
     <TransitionComponent in={inProps} {...TransitionProps}>
-      <Template theme={theme} className={clsx(className, { invisible: invisible })} {...props}>
+      <Template
+        theme={theme}
+        className={clsx('WowBackdrop-root', className, { invisible: invisible })}
+        {...props}
+      >
         {children}
       </Template>
     </TransitionComponent>
   );
 };
 
-export default withWowTheme(Backdrop, 'WowBackdrop-root');
+export default Backdrop;

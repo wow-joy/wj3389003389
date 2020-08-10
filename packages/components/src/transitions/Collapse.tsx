@@ -23,7 +23,7 @@ const attrStyles = {
 
 export interface CollapseProps extends Omit<TransitionProps, 'children'> {
   children?: React.ReactElement<any, any>;
-  position?: { x: number; y: number };
+  offset?: [string | number, string | number];
   direction?:
     | 'center'
     | 'left'
@@ -38,12 +38,24 @@ export interface CollapseProps extends Omit<TransitionProps, 'children'> {
 }
 
 export const Collapse: React.ForwardRefExoticComponent<CollapseProps> = React.forwardRef(
-  ({ children, timeout, attr = 'both', direction = 'center', ...props }, ref) => {
+  ({ children, timeout, attr = 'both', direction = 'center', offset = [0, 0], ...props }, ref) => {
     const styles = {
-      entering: { opacity: 0, transform: `${attrStyles[attr]}(0)` },
-      entered: { opacity: 1, transform: `${attrStyles[attr]}(1)` },
-      exiting: { opacity: 0, transform: `${attrStyles[attr]}(0)` },
-      exited: { opacity: 0, transform: `${attrStyles[attr]}(0)` },
+      entering: {
+        opacity: 0,
+        transform: `translate(${offset[0]}, ${offset[1]}) ${attrStyles[attr]}(0)`,
+      },
+      entered: {
+        opacity: 1,
+        transform: `translate(0,0) ${attrStyles[attr]}(1)`,
+      },
+      exiting: {
+        opacity: 0,
+        transform: `translate(${offset[0]}, ${offset[1]}) ${attrStyles[attr]}(0)`,
+      },
+      exited: {
+        opacity: 0,
+        transform: `translate(${offset[0]}, ${offset[1]}) ${attrStyles[attr]}(0)`,
+      },
     };
     const theme = useWowTheme();
     // @ts-ignore
@@ -63,7 +75,7 @@ export const Collapse: React.ForwardRefExoticComponent<CollapseProps> = React.fo
               transition: `all ${typeof timeout === 'object' ? timeout.appear : timeout}ms ${
                 theme.transitions.easing.easeInOut
               }`,
-              transform: `${attrStyles[attr]}(0)`,
+              transform: `translate(0, 0) ${attrStyles[attr]}(0)`,
               transformOrigin: originStyles[direction],
               ...styles[state],
               ...children.props.style,

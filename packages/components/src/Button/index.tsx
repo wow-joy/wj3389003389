@@ -1,9 +1,11 @@
 import React from 'react';
 import ButtonBase, { Props as ButtonBaseProps } from '../ButtonBase';
-import styled from 'styled-components';
-import { withWowTheme, Colors } from '@wowjoy/styled';
+import { Collapse } from '../transitions/Collapse';
+import Loading from '../Loading';
+import styled, { useWowTheme, Colors } from '@wowjoy/styled';
+import clsx from 'clsx';
 
-const StyleButton = styled(ButtonBase).attrs((p: Props) => ({
+const StyleButton = styled(ButtonBase).attrs(({ className, ...p }: Props) => ({
   ...p,
   notContained: p.variant !== 'contained',
   padding: [
@@ -11,9 +13,7 @@ const StyleButton = styled(ButtonBase).attrs((p: Props) => ({
     p.sizeOpt[p.size].padding[1] - Number(p.variant === 'outlined'),
   ],
 }))`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  height: ${p => p.sizeOpt[p.size].height}px;
   opacity: ${p => (p.disabled ? 0.4 : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   padding: ${p => `${p.padding[0]}px ${p.padding[1]}px`};
@@ -38,38 +38,45 @@ const StyleButton = styled(ButtonBase).attrs((p: Props) => ({
       box-shadow: ${p.theme.shadows[p.disableElevation ? 0 : 4]};
     }
     &:active {
-      background: ${p =>
-        p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark};
-      border-color: ${p => (p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'none')};
+      background: ${
+        p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark
+      };
+      border-color: ${p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'none'};
       box-shadow: ${p.theme.shadows[p.disableElevation ? 0 : 8]};
     }
   `}
+  svg {
+    vertical-align: -0.15em;
+  }
 `;
 
-const ButtonLabel = styled.span.attrs({ className: 'WowButton-label' })`
+const ButtonLabel = styled.span`
   width: 100%;
-  display: inherit;
-  align-items: inherit;
-  justify-content: inherit;
+  .WowButton-label-loading {
+    margin-right: 5px;
+  }
 `;
-const StartIcon = styled.span.attrs({ className: 'WowButton-startIcon' })`
+const StartIcon = styled.span`
   margin-right: 4px;
 `;
-const EndIcon = styled.span.attrs({ className: 'WowButton-endIcon' })`
+const EndIcon = styled.span`
   margin-left: 4px;
 `;
 interface SizeOpt {
   small: {
     padding: [number, number];
     fontSize: number;
+    height: number;
   };
   medium: {
     padding: [number, number];
     fontSize: number;
+    height: number;
   };
   large: {
     padding: [number, number];
     fontSize: number;
+    height: number;
   };
 }
 export interface Props extends ButtonBaseProps {
@@ -82,53 +89,69 @@ export interface Props extends ButtonBaseProps {
   color?: Colors;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  loading?: boolean;
 }
-const Button: React.FC<Props> = (
-  {
-    variant = 'contained',
-    size = 'medium',
-    color = 'primary',
-    disabled = false,
-    disableElevation = false,
-    sizeOpt = {
-      small: {
-        padding: [7, 12],
-        fontSize: 12,
+const Button = React.forwardRef<any, Props>(
+  (
+    {
+      variant = 'contained',
+      size = 'medium',
+      color = 'primary',
+      disabled = false,
+      disableElevation = false,
+      sizeOpt = {
+        small: {
+          padding: [7, 12],
+          fontSize: 12,
+          height: 26,
+        },
+        medium: {
+          padding: [9, 14],
+          fontSize: 14,
+          height: 32,
+        },
+        large: {
+          padding: [11, 20],
+          fontSize: 14,
+          height: 36,
+        },
       },
-      medium: {
-        padding: [9, 14],
-        fontSize: 14,
-      },
-      large: {
-        padding: [11, 20],
-        fontSize: 14,
-      },
+      children,
+      startIcon,
+      endIcon,
+      loading,
+      ...props
     },
-    children,
-    startIcon,
-    endIcon,
-    ...props
-  },
-  ref,
-) => {
-  return (
-    <StyleButton
-      ref={ref}
-      variant={variant}
-      size={size}
-      sizeOpt={sizeOpt}
-      color={color}
-      disabled={disabled}
-      disableElevation={variant === 'contained' ? disableElevation : true}
-      {...props}
-    >
-      <ButtonLabel>
-        {startIcon && <StartIcon>{startIcon}</StartIcon>}
-        {children}
-        {endIcon && <EndIcon>{endIcon}</EndIcon>}
-      </ButtonLabel>
-    </StyleButton>
-  );
-};
+    ref,
+  ) => {
+    const theme = useWowTheme();
+    return (
+      <StyleButton
+        ref={ref}
+        theme={theme}
+        variant={variant}
+        size={size}
+        sizeOpt={sizeOpt}
+        color={color}
+        disabled={disabled || loading}
+        disableElevation={variant === 'contained' ? disableElevation : true}
+        {...props}
+        className={clsx('WowButton-root', props.className)}
+      >
+        <ButtonLabel className="WowButton-label">
+          <Collapse attr="width" direction="left" in={loading} unmountOnExit mountOnEnter>
+            <span>
+              <Loading className="WowButton-label-loading" />
+            </span>
+          </Collapse>
 
-export default withWowTheme(Button, 'WowButton-root');
+          {startIcon && <StartIcon className="WowButton-startIcon">{startIcon}</StartIcon>}
+          {children}
+          {endIcon && <EndIcon className="WowButton-endIcon">{endIcon}</EndIcon>}
+        </ButtonLabel>
+      </StyleButton>
+    );
+  },
+);
+
+export default Button;

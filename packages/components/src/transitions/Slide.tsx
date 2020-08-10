@@ -11,13 +11,13 @@ const directionStyles = {
   bottom: ['translateY', ''],
 };
 
-export interface ShiftProps extends Omit<TransitionProps, 'children'> {
+export interface SlideProps extends Omit<TransitionProps, 'children'> {
   children?: React.ReactElement<any, any>;
   direction?: 'left' | 'right' | 'top' | 'bottom';
   movement?: string;
 }
 
-export const Shift: React.ForwardRefExoticComponent<ShiftProps> = React.forwardRef<any, ShiftProps>(
+export const Slide: React.ForwardRefExoticComponent<SlideProps> = React.forwardRef<any, SlideProps>(
   ({ children, timeout, direction = 'top', movement = '10px', ...props }, ref) => {
     const styles = {
       entering: {

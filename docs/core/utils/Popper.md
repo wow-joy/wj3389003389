@@ -12,6 +12,28 @@ title: Popper 弹出提示工具
  */
 
 import React from 'react';
+import { Button, Popper } from '@wowjoy/core';
+import { useToggle } from '@wowjoy/hooks';
+
+export default () => {
+  const [inProp, toggle] = useToggle(false);
+  return (
+    <Popper open={inProp} content="Hi, I'm a tip!">
+      <Button onClick={() => toggle()}>open</Button>
+    </Popper>
+  );
+};
+```
+
+## 位置 placement
+
+```tsx
+/**
+ * title: 基本使用
+ * desc: top-start  top top-end left-start right-start left right left-end right-end bottom-start bottom bottom-end
+ */
+
+import React from 'react';
 import { Popper, Button } from '@wowjoy/core';
 import styled from '@wowjoy/styled';
 

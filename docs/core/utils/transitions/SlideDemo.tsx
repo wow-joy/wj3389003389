@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react';
-import { Shift, Button } from '@wowjoy/core';
+import { Slide, Button } from '@wowjoy/core';
 import { useToggle } from '@wowjoy/hooks';
 import Radio from './Radio';
 
@@ -23,7 +23,7 @@ export default () => {
         value={direction}
         onChange={setDirection}
       />
-      <Shift
+      <Slide
         direction={direction as any}
         movement="100px"
         in={open}
@@ -34,7 +34,7 @@ export default () => {
         }}
       >
         <div style={{ height: 100, width: 100, background: 'red' }} />
-      </Shift>
+      </Slide>
     </>
   );
 };
