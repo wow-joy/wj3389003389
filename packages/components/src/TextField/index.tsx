@@ -73,6 +73,7 @@ const Wrap = styled.div<PropsWithoutSize>`
     top: 0;
     left: 0;
     transform: translate(0, 20px) scale(1);
+    pointer-events: none;
   }
 `;
 interface SizeOpt {
