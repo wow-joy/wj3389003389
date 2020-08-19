@@ -1,5 +1,6 @@
 import { ExtractByType } from './utils/type';
 export interface BreakPoints<T extends {} = {}> {
+  keys: string[];
   values: T;
   up: (key: keyof T) => string;
   down: (key: keyof T) => string;

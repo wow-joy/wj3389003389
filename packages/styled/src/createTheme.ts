@@ -4,6 +4,7 @@ import deepmerge from './utils/deepmerge';
 const values = { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 };
 export const defaultTheme: Theme<typeof values> = {
   breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     values: values,
     up: key => `@media (minWidth: ${values[key]}px)`,
     down: key => `@media (maxWidth: ${values[key]}px)`,
@@ -158,7 +159,7 @@ export const defaultTheme: Theme<typeof values> = {
     snackbar: 1400,
     tooltip: 1500,
   },
-  spacing: ratio => ratio * 8,
+  spacing: ratio => ratio * 4,
 };
 
 const createTheme = (theme: Partial<Theme> = {}) => {
