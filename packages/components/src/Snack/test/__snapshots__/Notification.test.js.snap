@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Notification render top 200 1`] = `
-<Notification
-  top={200}
-/>
-`;

@@ -1,4 +1,5 @@
-export { default as Snack } from './Snack';
+export { default as Alert, AlertTitle } from './Alert';
+// export { default as Snack } from './Snack';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Button } from './Button';
 export { default as IconButton } from './IconButton';

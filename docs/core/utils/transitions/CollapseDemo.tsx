@@ -5,40 +5,56 @@
 import React, { useState } from 'react';
 import { Collapse, Button } from '@wowjoy/core';
 import { useToggle } from '@wowjoy/hooks';
-import Radio from './Radio';
+import { HuatuoLogo } from '@wowjoy/icons';
 
 export default () => {
   const [open, toggle] = useToggle(true);
-  const [direction, setDirection] = useState('center');
-  const [attr, setAttr] = useState('both');
 
   return (
     <>
       <Button onClick={() => toggle()} style={{ marginBottom: 10 }}>
         toggle
       </Button>
-      <br />
-      <b>Direction</b>
-      <Radio
-        options={[
-          'center',
-          'left',
-          'right',
-          'top',
-          'bottom',
-          'topLeft',
-          'topRight',
-          'bottomLeft',
-          'bottomRight',
-        ]}
-        value={direction}
-        onChange={setDirection}
-      />
-      <b>Attr</b>
-      <Radio options={['both', 'width', 'height']} value={attr} onChange={setAttr} />
-      <Collapse direction={direction as any} attr={attr as any} in={open} timeout={1000}>
-        <div style={{ height: 100, width: 100, background: 'red' }} />
-      </Collapse>
+      <div style={{ display: 'flex' }}>
+        <Collapse
+          in={open}
+          timeout={{
+            appear: 300,
+            enter: 0,
+            exit: 0,
+          }}
+        >
+          <div
+            style={{
+              display: 'inline-flex',
+              background: 'rgba(0,0,0,.1)',
+              overflow: 'hidden',
+            }}
+          >
+            <HuatuoLogo style={{ fontSize: 100 }} />
+          </div>
+        </Collapse>
+        <span style={{ marginRight: 10 }}></span>
+        <Collapse
+          in={open}
+          collapsedHeight={20}
+          timeout={{
+            appear: 300,
+            enter: 0,
+            exit: 0,
+          }}
+        >
+          <div
+            style={{
+              display: 'inline-flex',
+              background: 'rgba(0,0,0,.1)',
+              overflow: 'hidden',
+            }}
+          >
+            <HuatuoLogo style={{ fontSize: 100 }} />
+          </div>
+        </Collapse>
+      </div>
     </>
   );
 };

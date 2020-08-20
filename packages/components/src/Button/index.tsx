@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonBase, { Props as ButtonBaseProps } from '../ButtonBase';
-import { Collapse } from '../transitions/Collapse';
+import { Zoom } from '../transitions/Zoom';
 import Loading from '../Loading';
 import styled, { useWowTheme, Colors } from '@wowjoy/styled';
 import clsx from 'clsx';
@@ -21,7 +21,12 @@ const StyleButton = styled(ButtonBase).attrs(({ className, ...p }: Props) => ({
   font-size: ${p => p.sizeOpt[p.size].fontSize}px;
   border: ${p =>
     p.variant === 'outlined' ? `1px solid ${p.theme.palette[p.color].main} ` : 'none'};
-  background-color: ${p => (p.notContained ? '#fff' : p.theme.palette[p.color].main)};
+  background-color: ${p =>
+    p.notContained
+      ? 'transparent'
+      : p.color === 'inherit'
+      ? '#f5f5f5'
+      : p.theme.palette[p.color].main};
   color: ${p =>
     p.notContained ? p.theme.palette[p.color].main : p.theme.palette[p.color].contrastText};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -31,17 +36,17 @@ const StyleButton = styled(ButtonBase).attrs(({ className, ...p }: Props) => ({
     !p.disabled &&
     `
     &:hover {
-      background: ${
+      background-color: ${
         p.notContained ? p.theme.palette[p.color].light1 : p.theme.palette[p.color].light
       };
       border-color: ${p.variant === 'outlined' ? p.theme.palette[p.color].light : 'unset'};
       box-shadow: ${p.theme.shadows[p.disableElevation ? 0 : 4]};
     }
     &:active {
-      background: ${
+      background-color: ${
         p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark
       };
-      border-color: ${p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'none'};
+      border-color: ${p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'unset'};
       box-shadow: ${p.theme.shadows[p.disableElevation ? 0 : 8]};
     }
   `}
@@ -86,7 +91,7 @@ export interface Props extends ButtonBaseProps {
   disabled?: boolean;
   disableElevation?: boolean;
   href?: string;
-  color?: Colors;
+  color?: Colors | 'inherit';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   loading?: boolean;
@@ -96,7 +101,7 @@ const Button = React.forwardRef<any, Props>(
     {
       variant = 'contained',
       size = 'medium',
-      color = 'primary',
+      color = 'inherit',
       disabled = false,
       disableElevation = false,
       sizeOpt = {
@@ -139,12 +144,11 @@ const Button = React.forwardRef<any, Props>(
         className={clsx('WowButton-root', props.className)}
       >
         <ButtonLabel className="WowButton-label">
-          <Collapse attr="width" direction="left" in={loading} unmountOnExit mountOnEnter>
+          <Zoom attr="width" direction="left" in={loading} unmountOnExit mountOnEnter>
             <span>
               <Loading className="WowButton-label-loading" />
             </span>
-          </Collapse>
-
+          </Zoom>
           {startIcon && <StartIcon className="WowButton-startIcon">{startIcon}</StartIcon>}
           {children}
           {endIcon && <EndIcon className="WowButton-endIcon">{endIcon}</EndIcon>}

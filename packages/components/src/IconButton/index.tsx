@@ -12,7 +12,12 @@ const StyleIconButton = styled(ButtonBase).attrs((p: Props) => ({
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   padding: 12px;
   font-size: ${p => p.sizeOpt[p.size].fontSize}px;
-  background-color: ${p => (p.notContained ? '#fff' : p.theme.palette[p.color].main)};
+  background-color: ${p =>
+    p.notContained
+      ? 'transparent'
+      : p.color === 'inherit'
+      ? '#F5F5F5'
+      : p.theme.palette[p.color].main};
   color: ${p =>
     p.notContained ? p.theme.palette[p.color].main : p.theme.palette[p.color].contrastText};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -28,7 +33,7 @@ const StyleIconButton = styled(ButtonBase).attrs((p: Props) => ({
           background: ${
             p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark
           };
-          border-color: none;
+          border-color: unset;
         }
       `}
 `;
@@ -62,7 +67,7 @@ const IconButton = React.forwardRef<any, Props>(
     {
       variant = 'contained',
       size = 'medium',
-      color = 'primary',
+      color = 'inherit',
       disabled = false,
       sizeOpt = {
         small: {

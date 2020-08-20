@@ -17,6 +17,12 @@ const StyleButtonBase = styled.button`
   .WowButton-label {
     width: 100%;
   }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
   &:focus {
     outline: 0;
   }

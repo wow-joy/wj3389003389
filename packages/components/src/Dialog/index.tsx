@@ -4,7 +4,7 @@ import Modal, { Props as ModalProps } from '../Modal';
 import styled, { useWowTheme } from '@wowjoy/styled';
 import clsx from 'clsx';
 import { Close } from '@wowjoy/icons';
-import { Collapse } from '../transitions/Collapse';
+import { Zoom } from '../transitions/Zoom';
 
 const DialogWrap = styled.div`
   background: #fff;
@@ -13,6 +13,7 @@ const DialogWrap = styled.div`
 `;
 const DialogHeader = styled.div`
   position: relative;
+  border-radius: ${p => p.theme.shape.borderRadius}px ${p => p.theme.shape.borderRadius}px 0 0;
   color: ${p => p.theme.palette.primary.contrastText};
   background-color: ${p => p.theme.palette.primary.main};
   padding: 12px 10px;
@@ -45,7 +46,7 @@ const Dialog = React.forwardRef<any, Props>(
 
     return (
       <Modal ref={ref} {...props}>
-        <Collapse in={open}>
+        <Zoom in={open}>
           <DialogWrap theme={theme} className={clsx('WowDialog-root', className)} style={style}>
             <DialogHeader theme={theme} className="WowDialog-header">
               <DialogTitle theme={theme} className="WowDialog-header-title">
@@ -57,7 +58,7 @@ const Dialog = React.forwardRef<any, Props>(
               {children}
             </DialogBody>
           </DialogWrap>
-        </Collapse>
+        </Zoom>
       </Modal>
     );
   },

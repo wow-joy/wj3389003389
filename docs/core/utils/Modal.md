@@ -54,7 +54,7 @@ export default () => {
  * desc: 可以自己使用过渡动画, 比如react-transition-group或react-spring, 也可以使用本库动画
  */
 import React, { useState } from 'react';
-import { Button, Modal, Collapse } from '@wowjoy/core';
+import { Button, Modal, Zoom } from '@wowjoy/core';
 import styled from '@wowjoy/styled';
 
 const Content = styled.div`
@@ -73,7 +73,7 @@ export default () => {
         Open
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <Collapse in={open}>
+        <Zoom in={open}>
           <Content>
             <h2>Modal</h2>
             <p>Content</p>
@@ -81,7 +81,7 @@ export default () => {
               Close
             </Button>
           </Content>
-        </Collapse>
+        </Zoom>
       </Modal>
     </>
   );

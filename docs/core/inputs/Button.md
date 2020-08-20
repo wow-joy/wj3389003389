@@ -50,6 +50,10 @@ export default () => (
     <IconButton size="small" disabled>
       <Delete />
     </IconButton>
+    <Space />
+    <IconButton size="small" variant="text">
+      <Delete />
+    </IconButton>
   </>
 );
 ```
@@ -91,6 +95,8 @@ import { Button } from '@wowjoy/core';
 const Space = () => <span style={{ marginLeft: 10 }}></span>;
 export default () => (
   <>
+    <Button variant="contained">default(inherit)</Button>
+    <Space />
     <Button variant="contained" color="primary">
       primary
     </Button>
@@ -103,8 +109,8 @@ export default () => (
       error
     </Button>
     <Space />
-    <Button variant="contained" color="warn">
-      warn
+    <Button variant="contained" color="warning">
+      warning
     </Button>
     <Space />
     <Button variant="contained" color="success">

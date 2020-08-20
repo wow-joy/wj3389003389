@@ -19,13 +19,15 @@ interface Color {
 export type Colors = ExtractByType<Palette, Color>;
 
 export interface Palette {
+  type: string;
   primary: Color;
   secondary: Color;
   error: Color;
-  warn: Color;
+  warning: Color;
   success: Color;
   info: Color;
   question: Color;
+  inherit: Color;
   background: {
     default: string;
     level1: string;

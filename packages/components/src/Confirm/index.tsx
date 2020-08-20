@@ -5,9 +5,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button';
 import Modal, { Props as ModalProps } from '../Modal';
-import { Collapse } from '../transitions/Collapse';
+import { Zoom } from '../transitions/Zoom';
 
-const DialogWrap = styled.div`
+const DialogWrap = styled.div<any>`
   padding: 24px 55px 18px 55px;
   position: relative;
   background: #fff;
@@ -30,6 +30,7 @@ const DialogTitleWrap = styled.div<any>`
     font-size: 20px;
     position: absolute;
     left: -30px;
+    color: ${p => p.theme.palette[p.type].main};
   }
 `;
 const DialogTitle = styled.div`
@@ -60,7 +61,7 @@ const DialogFooter = styled.div`
 `;
 
 export interface Props extends ModalProps {
-  type?: 'question' | 'warn' | 'success' | 'error';
+  type?: 'question' | 'warning' | 'success' | 'error';
   title?: React.ReactElement;
   desc?: React.ReactElement;
   className?: string;
@@ -70,24 +71,11 @@ export interface Props extends ModalProps {
   loading?: boolean;
 }
 
-const WarnIcon = styled(WarningCircle)`
-  color: ${p => p.theme.palette.warn.main};
-`;
-const QuestionIcon = styled(QuestionCircle)`
-  color: ${p => p.theme.palette.question.main};
-`;
-const SuccessIcon = styled(CheckCircle)`
-  color: ${p => p.theme.palette.success.main};
-`;
-const ErrorIcon = styled(CloseCircle)`
-  color: ${p => p.theme.palette.error.main};
-`;
-
 const Icons = {
-  question: QuestionIcon,
-  warn: WarnIcon,
-  success: SuccessIcon,
-  error: ErrorIcon,
+  question: QuestionCircle,
+  warning: WarningCircle,
+  success: CheckCircle,
+  error: CloseCircle,
 };
 
 const Confirm = React.forwardRef<any, Props>(
@@ -111,12 +99,13 @@ const Confirm = React.forwardRef<any, Props>(
     const Icon = Icons[type];
     return (
       <Modal {...props} ref={ref}>
-        <Collapse in={open}>
+        <Zoom in={open}>
           <DialogWrap theme={theme} className={clsx('WowConfirm-root', className)} style={style}>
             <Close className="WowConfirm-close" onClick={onClose} />
             <DialogTitleWrap
               hasDesc={Boolean(desc)}
               theme={theme}
+              type={type}
               className="WowConfirm-title-wrap"
             >
               <Icon className="WowConfirm-icon" theme={theme} />
@@ -128,9 +117,8 @@ const Confirm = React.forwardRef<any, Props>(
               {desc}
             </DialogDesc>
             <DialogFooter>
-              {type === 'question' || type === 'warn' ? (
+              {type === 'question' || type === 'warning' ? (
                 <>
-                  {' '}
                   <Button
                     loading={loading}
                     variant={equal ? 'outlined' : 'contained'}
@@ -152,7 +140,7 @@ const Confirm = React.forwardRef<any, Props>(
               )}
             </DialogFooter>
           </DialogWrap>
-        </Collapse>
+        </Zoom>
       </Modal>
     );
   },

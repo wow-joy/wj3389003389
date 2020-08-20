@@ -35,8 +35,8 @@ export default () => {
         question
       </Button>
       <Space />
-      <Button color="warn" onClick={handleClick('warn')}>
-        warn
+      <Button color="warning" onClick={handleClick('warning')}>
+        warning
       </Button>
       <Space />
       <Button color="success" onClick={handleClick('success')}>
@@ -96,7 +96,7 @@ export default () => {
     confirm({
       title: '确认删除?',
       desc: '删除之后不能恢复',
-      type: 'warn',
+      type: 'warning',
       equal: false,
       onOk: () => {
         return new Promise(res => {
@@ -111,7 +111,7 @@ export default () => {
         open
       </Button>
       <Space />
-      <Button color="warn" onClick={handleClickAsyn}>
+      <Button color="warning" onClick={handleClickAsyn}>
         with Promise
       </Button>
     </>
@@ -123,7 +123,7 @@ export default () => {
 
 | 参数    | 说明         | 类型                                                   | 默认值   |
 | :------ | :----------- | :----------------------------------------------------- | :------- |
-| type    | confirm 类型 | 'question' \| 'warn' \| 'success'\|'error'             | question |
+| type    | confirm 类型 | 'question' \| 'warning' \| 'success'\|'error'          | question |
 | title   | 标题         | string                                                 |          |
 | desc    | 描述         | string                                                 |
 | equal   | 按钮是否评级 | boolean                                                | false    |

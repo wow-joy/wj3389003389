@@ -6,6 +6,10 @@ title: Transitions 动画
 
 # Transitions 动画
 
+## Collapse 折叠
+
+<code src="./transitions/CollapseDemo.tsx" />
+
 ## Fade 淡入淡出
 
 ```tsx
@@ -32,9 +36,9 @@ export default () => {
 };
 ```
 
-## Collapse 折叠
+## Zoom 放大
 
-<code src="./transitions/CollapseDemo.tsx" />
+<code src="./transitions/ZoomDemo.tsx" />
 
 ## Slide 移入移出
 
@@ -43,6 +47,12 @@ export default () => {
 ## [BaseProps](https://reactcommunity.org/react-transition-group/transition)
 
 ## Collapse Props
+
+| 参数            | 说明       | 类型             | 默认值 |
+| :-------------- | :--------- | :--------------- | :----- |
+| collapsedHeight | 保留的高度 | string \| number | 0      |
+
+## Zoom Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | :-- | :-- | :-- | :-- |

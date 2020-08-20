@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled, { withWowTheme, css, borderCss, DefaultTheme } from '@wowjoy/styled';
-import { useControlState } from '@wowjoy/hooks';
+import { useControlState, useForkRef } from '@wowjoy/hooks';
 import { CloseFillCircle } from '@wowjoy/icons';
 import clsx from 'clsx';
 import InputBase from '../InputBase';
@@ -30,6 +30,7 @@ const StyleInput = styled(InputBase)<any>`
 const Wrap = styled.span<PropsWithoutSize>`
   ${borderCss}
   ${wrapCss}
+  cursor: text;
   display: inline-flex;
   align-items: center;
   .WowInput-input {
@@ -104,13 +105,19 @@ const Input: React.FC<Props> = (
       setValue(e.target.value);
     }
   };
+  const selfInputRef = useRef<HTMLInputElement>();
+  const handleInputRef = useForkRef(inputRef, selfInputRef);
+
   const handleClear = e => {
     onChange?.({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
     if (!isControlled) {
       setValue('');
     }
   };
-
+  const handleClick = e => {
+    props.onClick?.(e);
+    selfInputRef.current.focus();
+  };
   if (!suffix && !prefix && !allowClear) {
     return (
       <StyleInput
@@ -129,6 +136,7 @@ const Input: React.FC<Props> = (
   return (
     <Wrap
       {...props}
+      onClick={handleClick}
       className={clsx(className, { 'Wow-disabled': disabled })}
       size={size}
       sizeOpt={sizeOpt}
@@ -139,7 +147,7 @@ const Input: React.FC<Props> = (
       <InputBase
         {...inputProps}
         className={clsx('WowInput-input', inputProps.className)}
-        ref={inputRef}
+        ref={handleInputRef}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
