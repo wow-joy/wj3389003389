@@ -120,6 +120,7 @@ const Confirm = React.forwardRef<any, Props>(
               {type === 'question' || type === 'warning' ? (
                 <>
                   <Button
+                    color="primary"
                     loading={loading}
                     variant={equal ? 'outlined' : 'contained'}
                     onClick={onOk}

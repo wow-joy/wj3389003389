@@ -24,7 +24,7 @@ const withWowTheme = <T, P extends {}>(
           // @ts-ignore
           <ComponentRef
             {...props}
-            theme={createTheme(theme)}
+            theme={theme || createTheme(theme)}
             className={clsx((props as any).className, className)}
             ref={ref}
           />

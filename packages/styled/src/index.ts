@@ -10,7 +10,8 @@ export { default as createTheme } from './createTheme';
 export { default as withWowTheme } from './withWowTheme';
 export { default } from 'styled-components';
 export const useWowTheme = (): DefaultTheme => {
-  return createTheme(useTheme());
+  const theme = useTheme();
+  return theme || createTheme();
 };
 
 declare module 'styled-components' {

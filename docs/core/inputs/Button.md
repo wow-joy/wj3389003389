@@ -162,6 +162,8 @@ export default () => (
 | startIcon        | 前置 icon              | ReactNode                           |           |
 | endIcon          | 后置 icon              | ReactNode                           |           |
 
+### SizeOpt
+
 ```
 interface SizeOpt {
   small: {

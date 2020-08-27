@@ -5,51 +5,65 @@ import Loading from '../Loading';
 import styled, { useWowTheme, Colors } from '@wowjoy/styled';
 import clsx from 'clsx';
 
-const StyleButton = styled(ButtonBase).attrs(({ className, ...p }: Props) => ({
-  ...p,
-  notContained: p.variant !== 'contained',
-  padding: [
-    p.sizeOpt[p.size].padding[0] - Number(p.variant === 'outlined'),
-    p.sizeOpt[p.size].padding[1] - Number(p.variant === 'outlined'),
-  ],
-}))`
-  height: ${p => p.sizeOpt[p.size].height}px;
+const StyleButton = styled(ButtonBase)<
+  Props & {
+    $color: Props['color'];
+  }
+>`
+  &.WowButton-sm {
+    height: 26px;
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  &.WowButton-lg {
+    height: 36px;
+    padding: 11px 20px;
+  }
+  &.WowButton-outlined {
+    border: 1px solid;
+    background-color: transparent;
+    color: ${p => p.theme.palette[p.$color].main};
+    &:not(.WowButton-disabled):hover {
+      background-color: ${p => p.theme.palette[p.$color].light1};
+      border-color: ${p => p.theme.palette[p.$color].light};
+    }
+    &:not(.WowButton-disabled):active {
+      background-color: ${p => p.theme.palette[p.$color].dark1};
+      border-color: ${p => p.theme.palette[p.$color].dark};
+    }
+  }
+  &.WowButton-text {
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: ${p => p.theme.palette[p.$color].main};
+    &:not(.WowButton-disabled):hover {
+      background-color: ${p => p.theme.palette[p.$color].light1};
+    }
+    &:not(.WowButton-disabled):active {
+      background-color: ${p => p.theme.palette[p.$color].dark1};
+    }
+  }
+  height: 32px;
   opacity: ${p => (p.disabled ? 0.4 : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
-  padding: ${p => `${p.padding[0]}px ${p.padding[1]}px`};
+  padding: 9px 14px;
   border-radius: ${p => p.theme.shape.borderRadius}px;
-  font-size: ${p => p.sizeOpt[p.size].fontSize}px;
-  border: ${p =>
-    p.variant === 'outlined' ? `1px solid ${p.theme.palette[p.color].main} ` : 'none'};
-  background-color: ${p =>
-    p.notContained
-      ? 'transparent'
-      : p.color === 'inherit'
-      ? '#f5f5f5'
-      : p.theme.palette[p.color].main};
-  color: ${p =>
-    p.notContained ? p.theme.palette[p.color].main : p.theme.palette[p.color].contrastText};
+  font-size: 14px;
+  background-color: ${p => (p.$color === 'inherit' ? '#f5f5f5' : p.theme.palette[p.$color].main)};
+  color: ${p => p.theme.palette[p.$color].contrastText};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   box-shadow: ${p => p.theme.shadows[p.disableElevation || p.disabled ? 0 : 2]};
-  ${p =>
-    !p.disabled &&
-    `
-    &:hover {
-      background-color: ${
-        p.notContained ? p.theme.palette[p.color].light1 : p.theme.palette[p.color].light
-      };
-      border-color: ${p.variant === 'outlined' ? p.theme.palette[p.color].light : 'unset'};
-      box-shadow: ${p.theme.shadows[p.disableElevation ? 0 : 4]};
-    }
-    &:active {
-      background-color: ${
-        p.notContained ? p.theme.palette[p.color].dark1 : p.theme.palette[p.color].dark
-      };
-      border-color: ${p.variant === 'outlined' ? p.theme.palette[p.color].dark : 'unset'};
-      box-shadow: ${p.theme.shadows[p.disableElevation ? 0 : 8]};
-    }
-  `}
+
+  &:not(.WowButton-disabled):hover {
+    background-color: ${p => p.theme.palette[p.$color].light};
+    box-shadow: ${p => p.theme.shadows[p.disableElevation ? 0 : 4]};
+  }
+  &:not(.WowButton-disabled):active {
+    background-color: ${p => p.theme.palette[p.$color].dark};
+    box-shadow: ${p => p.theme.shadows[p.disableElevation ? 0 : 8]};
+  }
+
   svg {
     vertical-align: -0.15em;
   }
@@ -90,7 +104,6 @@ export interface Props extends ButtonBaseProps {
   sizeOpt?: SizeOpt;
   disabled?: boolean;
   disableElevation?: boolean;
-  href?: string;
   color?: Colors | 'inherit';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
@@ -137,11 +150,17 @@ const Button = React.forwardRef<any, Props>(
         variant={variant}
         size={size}
         sizeOpt={sizeOpt}
-        color={color}
+        $color={color}
         disabled={disabled || loading}
         disableElevation={variant === 'contained' ? disableElevation : true}
         {...props}
-        className={clsx('WowButton-root', props.className)}
+        className={clsx('WowButton-root', `WowButton-${variant}-${color}`, props.className, {
+          'WowButton-sm': size === 'small',
+          'WowButton-lg': size === 'large',
+          'WowButton-outlined': variant === 'outlined',
+          'WowButton-text': variant === 'text',
+          'WowButton-disabled': disabled,
+        })}
       >
         <ButtonLabel className="WowButton-label">
           <Zoom attr="width" direction="left" in={loading} unmountOnExit mountOnEnter>

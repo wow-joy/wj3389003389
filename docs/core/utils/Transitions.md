@@ -10,6 +10,10 @@ title: Transitions 动画
 
 <code src="./transitions/CollapseDemo.tsx" />
 
+## CollapseSlide 折叠移入移出
+
+<code src="./transitions/CollapseSlideDemo.tsx" />
+
 ## Fade 淡入淡出
 
 ```tsx

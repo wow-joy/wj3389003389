@@ -71,12 +71,26 @@ const Modal = React.forwardRef<any, Props>(
         posRef.current = null;
       };
     }, []);
-    useEffect(() => {
-      document.body.style.overflow = open ? 'hidden' : '';
-    }, [open]);
+
+    const handleEnter = (...args) => {
+      TransitionProps.onEnter?.(...args);
+      document.body.style.overflow = 'hidden';
+    };
+    const handleExited = (...args) => {
+      TransitionProps.onEnter?.(...args);
+      document.body.style.overflow = '';
+    };
+
     return (
       <Portal container={container} ref={ref} {...props}>
-        <TransitionComponent mountOnEnter unmountOnExit in={open} {...TransitionProps}>
+        <TransitionComponent
+          mountOnEnter
+          unmountOnExit
+          in={open}
+          {...TransitionProps}
+          onEnter={handleEnter}
+          onExited={handleExited}
+        >
           <Wrap theme={theme} className={clsx('WowModal-root')}>
             {!hideBackdrop && (
               <Backdrop in={open} {...BackdropProps} onClick={handleBackdropClick} />

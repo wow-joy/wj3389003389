@@ -79,7 +79,7 @@ export default () => {
 ```tsx
 /**
  * title: 基本使用
- * desc: small middle large
+ * desc: small medium large
  */
 
 import React from 'react';
@@ -91,7 +91,7 @@ export default () => {
     <>
       <Alert size="small">This is a success alert — check it out!</Alert>
       <Space />
-      <Alert size="middle">This is a success alert — check it out!</Alert>
+      <Alert size="medium">This is a success alert — check it out!</Alert>
       <Space />
       <Alert size="large">This is a success alert — check it out!</Alert>
     </>
@@ -176,11 +176,15 @@ const Space = () => <div style={{ marginTop: 5 }}></div>;
 export default () => {
   return (
     <>
-      <Alert variant="standard">Standard</Alert>
+      <Alert variant="standard" onClose={() => console.log(1)}>
+        Standard
+      </Alert>
       <Space />
-      <Alert variant="outlined">Outlined</Alert>
+      <Alert variant="outlined" onClose={() => console.log(1)}>
+        Outlined
+      </Alert>
       <Space />
-      <Alert icon={<CheckCircle />} variant="filled">
+      <Alert variant="filled" onClose={() => console.log(1)}>
         Filled
       </Alert>
     </>
@@ -208,9 +212,15 @@ export default () => {
 };
 ```
 
-## Props(继承 [PopperProps](/core/utils/popper))
+## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | :-- | :-- | :-- | :-- |
-| clo | title 内容 | React.ReactNode |
-| trigger | 触发方式，也可以自己控制 open | 'click' \| 'focus' \| 'hover' \| 'contextMenu' | hover |
+| icon | 图标 | React.ReactNode \| false |
+| variant | 类型 | filled \| outlined \| standard | standard |
+| severity | 警告级别 | success \| info \| warning \| error \| question | success |
+| color | 颜色(级别高于 severity) | success \| info \| warning \| error \| question |  |
+| size | 大小 | small \| medium \| large | medium |
+| iconMapping | severity 图标设置 | Record<'success' \| 'info' \| 'warning' \| 'error' \| 'question', React.ReactNode> |  |
+| action | 右侧触发 | React.ReactNode |  |
+| onClose | 默认 action 的点击 | (e: React.MouseEvent<any, MouseEvent>) => void |

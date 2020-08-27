@@ -17,21 +17,17 @@ const StyleButtonBase = styled.button`
   .WowButton-label {
     width: 100%;
   }
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  &:active {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
   &:focus {
     outline: 0;
   }
 `;
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends React.HTMLAttributes<HTMLElement> {
   enableTouchRipple?: boolean;
   center?: boolean;
   component?: keyof JSX.IntrinsicElements;
+  type?: string;
+  href?: string;
 }
 const ButtonBase = React.forwardRef<any, Props>(
   (
@@ -40,6 +36,8 @@ const ButtonBase = React.forwardRef<any, Props>(
       component = 'button',
       enableTouchRipple = true,
       center = false,
+      type = 'button',
+      href,
       onMouseDown,
       onMouseUp,
       onMouseLeave,
@@ -71,9 +69,20 @@ const ButtonBase = React.forwardRef<any, Props>(
     const handleTouchStart = useRippleHnadler('start', onTouchStart);
     const handleTouchEnd = useRippleHnadler('stop', onTouchEnd);
     const handleTouchMove = useRippleHnadler('stop', onTouchMove);
+
+    const buttonProps: any = {};
+    if (component === 'button') {
+      buttonProps.type = type;
+    } else {
+      if (component !== 'a' || !href) {
+        buttonProps.role = 'button';
+      }
+    }
+
     return (
       <StyleButtonBase
         {...props}
+        {...buttonProps}
         className={clsx('WowButtonBase-root', props.className)}
         theme={theme}
         ref={ref}

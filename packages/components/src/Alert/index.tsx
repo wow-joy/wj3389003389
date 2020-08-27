@@ -4,46 +4,21 @@ import styled, { useWowTheme, DefaultTheme, withWowTheme } from '@wowjoy/styled'
 import clsx from 'clsx';
 import {
   CheckFillCircle,
+  CheckCircle,
   WarningFillCircle,
+  WarningCircle,
   QuestionFillCircle,
+  QuestionCircle,
   CloseFillCircle,
+  CloseCircle,
   InfoFillCircle,
+  InfoCircle,
   Close,
 } from '@wowjoy/icons';
 
-const sizeOpts = {
-  small: {
-    icon: {
-      fontSize: 14,
-    },
-    message: {
-      text: 12,
-      padding: 1,
-    },
-  },
-  middle: {
-    icon: {
-      fontSize: 16,
-    },
-    message: {
-      text: 12,
-      padding: 2,
-    },
-  },
-  large: {
-    icon: {
-      fontSize: 24,
-    },
-    message: {
-      text: 14,
-      padding: 6,
-    },
-  },
-};
 const Wrap = styled.div<{
   theme: DefaultTheme;
   $type: Props['severity'];
-  $size: Props['size'];
   $variant: Props['variant'];
 }>`
   &.WowAlert-outlined {
@@ -59,29 +34,53 @@ const Wrap = styled.div<{
     .WowAlertTitle-root {
       color: #fff;
     }
+    .WowAlert-close-icon {
+      color: #fff;
+    }
   }
   background-color: ${p => p.theme.palette[p.$type].light1};
   border: 1px solid ${p => p.theme.palette[p.$type].dark1};
   border-radius: ${p => p.theme.shape.borderRadius}px;
-  padding: 7px 10px;
+  padding: 11px 20px;
   display: flex;
+
   .WowAlert-icon {
     display: flex;
-    padding: 2px 0;
-    font-size: ${p => sizeOpts[p.$size].icon.fontSize}px;
+    font-size: 24px;
     color: ${p => p.theme.palette[p.$type].main};
     margin-right: 10px;
   }
   .WowAlert-message {
-    font-size: ${p => sizeOpts[p.$size].message.text}px;
-    padding: ${p => sizeOpts[p.$size].message.padding}px 0;
+    line-height: 1;
+    font-size: 14px;
+    padding: 5px 0;
     color: ${p =>
       p.$type === 'error' ? p.theme.palette.error.main : p.theme.palette.text.secondary};
+  }
+  &.WowAlert-sm {
+    padding: 9px 10px;
+    .WowAlert-icon {
+      font-size: 16px;
+    }
+    .WowAlert-message {
+      padding: 2px 0;
+    }
+  }
+  &.WowAlert-lg {
+    padding: 15px 30px;
+    .WowAlert-icon {
+      font-size: 20px;
+    }
+    .WowAlert-message {
+      font-size: 14px;
+      padding: 3px 0;
+    }
   }
   .WowAlert-action {
     display: flex;
     align-items: center;
     margin-left: auto;
+    padding-left: 16px;
     color: ${p => p.theme.palette.disabled};
     .WowAlert-close-icon {
       font-size: 12px;
@@ -100,22 +99,29 @@ export const AlertTitle = withWowTheme(
   `,
   'WowAlertTitle-root',
 );
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode | boolean;
   variant?: 'filled' | 'outlined' | 'standard';
   severity?: 'success' | 'info' | 'warning' | 'error' | 'question';
   color?: 'success' | 'info' | 'warning' | 'error' | 'question';
-  size?: 'small' | 'middle' | 'large';
+  size?: 'small' | 'medium' | 'large';
   iconMapping?: Record<'success' | 'info' | 'warning' | 'error' | 'question', React.ReactNode>;
   action?: React.ReactNode;
   onClose?: (e: React.MouseEvent<any, MouseEvent>) => void;
 }
-const icons = {
+const filledIcons = {
   success: <CheckFillCircle />,
   warning: <WarningFillCircle />,
   question: <QuestionFillCircle />,
   error: <CloseFillCircle />,
   info: <InfoFillCircle />,
+};
+const icons = {
+  success: <CheckCircle />,
+  warning: <WarningCircle />,
+  question: <QuestionCircle />,
+  error: <CloseCircle />,
+  info: <InfoCircle />,
 };
 const Alert = React.forwardRef<any, Props>(
   (
@@ -123,10 +129,10 @@ const Alert = React.forwardRef<any, Props>(
       severity = 'success',
       children,
       icon,
-      size = 'middle',
+      size = 'medium',
       onClose,
       color,
-      iconMapping = icons,
+      iconMapping,
       action,
       variant = 'standard',
       className,
@@ -135,20 +141,21 @@ const Alert = React.forwardRef<any, Props>(
     ref,
   ) => {
     const theme = useWowTheme();
-    const Icon = icons[severity];
+    iconMapping = iconMapping || (variant === 'filled' ? icons : filledIcons);
+    const Icon = iconMapping[severity];
     const IconNode = icon || Icon;
-
     return (
       <Wrap
         ref={ref}
         theme={theme}
         $type={color || severity}
         $variant={variant}
-        $size={size}
         role="alert"
         className={clsx(className, 'WowAlert-root', {
           'WowAlert-outlined': variant === 'outlined',
           'WowAlert-filled': variant === 'filled',
+          'WowAlert-sm': size === 'small',
+          'WowAlert-lg': size === 'large',
         })}
         {...props}
       >

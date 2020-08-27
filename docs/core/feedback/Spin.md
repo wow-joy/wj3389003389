@@ -37,7 +37,7 @@ export default () => {
 
 ## Props
 
-| 参数      | 说明         | 类型            | 默认值   |
-| :-------- | :----------- | :-------------- | :------- |
-| spinning  | 正在加载？   | boolean         | question |
-| indicator | loading 组件 | React.ReactNode |          |
+| 参数      | 说明         | 类型            | 默认值 |
+| :-------- | :----------- | :-------------- | :----- |
+| spinning  | 加载中       | boolean         |        |
+| indicator | loading 组件 | React.ReactNode |        |

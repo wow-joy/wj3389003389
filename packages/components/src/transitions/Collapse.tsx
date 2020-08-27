@@ -10,7 +10,7 @@ export interface CollapseProps extends Omit<TransitionProps, 'children'> {
 }
 
 export const Collapse: React.ForwardRefExoticComponent<CollapseProps> = React.forwardRef(
-  ({ children, timeout, collapsedHeight = 0, in: inProp, ...props }, ref) => {
+  ({ children, timeout, collapsedHeight = 0, in: inProp, className, style, ...props }, ref) => {
     const theme = useWowTheme();
     const nodeRef = useRef<HTMLDivElement>();
     const childRef = useRef<HTMLElement>();
@@ -67,12 +67,14 @@ export const Collapse: React.ForwardRefExoticComponent<CollapseProps> = React.fo
         {(state, childProps) => (
           <div
             ref={nodeRef}
+            className={className}
             style={{
               overflow: 'hidden',
               height: 0,
               transition: `all ${typeof timeout === 'object' ? timeout.appear : timeout}ms ${
                 theme.transitions.easing.easeInOut
               }`,
+              ...style,
               ...styles[state],
             }}
           >
