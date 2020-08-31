@@ -21,5 +21,7 @@ export * from './Radio';
 export * from './Checkbox';
 export { default as Tooltip } from './Tooltip';
 export { default as ClickAwayListener } from './ClickAwayListener';
+export * from './Box';
+export * from './Form';
 
 export * from './transitions';
