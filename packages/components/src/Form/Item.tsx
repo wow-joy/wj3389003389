@@ -11,7 +11,7 @@ import { FormContext } from './Form';
 import { FormItem, FormItemProps, FormUIState } from './FormItem';
 
 const FormItemExplain = styled.div`
-  height: 20px;
+  min-height: 20px;
   line-height: 20px;
   font-size: 12px;
   color: red;
