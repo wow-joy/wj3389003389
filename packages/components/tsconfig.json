@@ -17,7 +17,9 @@
       "@wowjoy/styled": ["../styled/src"],
       "@wowjoy/styled/*": ["../styled/src/*"],
       "@wowjoy/icons": ["../icons/src"],
-      "@wowjoy/icons/*": ["../icons/src/*"]
+      "@wowjoy/icons/*": ["../icons/src/*"],
+      "@wowjoy/types": ["../types/src"],
+      "@wowjoy/types/*": ["../types/src/*"]
     }
   },
   "exclude": ["**/build/", "**/*.test.ts", "node_modules"]

@@ -21,7 +21,9 @@
       "@wowjoy/icons": ["./packages/icons/src"],
       "@wowjoy/icons/*": ["./packages/icons/src/*"],
       "@wowjoy/ui": ["./packages/ui/src"],
-      "@wowjoy/ui/*": ["./packages/ui/src/*"]
+      "@wowjoy/ui/*": ["./packages/ui/src/*"],
+      "@wowjoy/types": ["./packages/types/src/*"],
+      "@wowjoy/types/*": ["./packages/types/src/*"]
     }
   },
   "exclude": ["**/build/", "**/*.test.ts", "**/node_modules"]
