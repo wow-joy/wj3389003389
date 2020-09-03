@@ -30,3 +30,14 @@ export type PropsOf<
   : T extends keyof ReactSVG
   ? PropsOfSVGTag<T>
   : never;
+
+export type PropsOfHTMLTag<T extends keyof ReactHTML> = ReactHTML[T] extends DetailedHTMLFactory<
+  infer R,
+  any
+>
+  ? R
+  : never;
+
+export type PropsOfSVGTag<T extends keyof ReactSVG> = ReactSVG[T] extends DOMFactory<infer R, any>
+  ? R
+  : never;
