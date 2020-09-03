@@ -38,9 +38,9 @@
     }
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.0",
     "clsx": "^1.1.0",
-    "styled-components": "^5.1.1",
-    "@types/styled-components": "^5.1.0"
+    "styled-components": "^5.1.1"
   },
   "sideEffects": false,
   "publishConfig": {
@@ -49,5 +49,5 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "devDependencies": {}
+  "gitHead": "d19caa2de8f3c101291be5a52164921c259b2cdb"
 }

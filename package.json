@@ -1,5 +1,8 @@
 {
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "workspaces": [
     "packages/*",
     "example/*"
@@ -7,7 +10,7 @@
   "description": "Wowjoy front",
   "scripts": {
     "install": "lerna bootstrap",
-    "build": "npm run clean && father build",
+    "build": "father build",
     "build:watch": "father build --watch",
     "prettier": "prettier --write **/*.{js,jsx,tsx,ts,json} !**/es/** !**/lib/**",
     "changelog": "lerna-changelog",
@@ -16,7 +19,8 @@
     "doc:dev": "dumi dev",
     "doc:build": "dumi build",
     "now-build": "npm run doc:build",
-    "publish": "lerna publish from-package"
+    "prepublish": "yarn build",
+    "pub": "lerna publish from-package"
   },
   "husky": {
     "hooks": {
