@@ -28,7 +28,7 @@ export interface Props {
 }
 
 const CheckboxGroup = React.forwardRef<any, Props>(
-  ({ defaultValue = [], disabled, name, options, onChange, children, ...props }) => {
+  ({ defaultValue = [], disabled, name, options, onChange, children, ...props }, ref) => {
     const theme = useWowTheme();
     const [value, setValue] = useControlState('value' in props, props.value, defaultValue);
     const handleChange = useCallback(
@@ -71,7 +71,7 @@ const CheckboxGroup = React.forwardRef<any, Props>(
           name,
         }}
       >
-        <CheckboxWrap theme={theme} {...props}>
+        <CheckboxWrap theme={theme} {...props} ref={ref}>
           {childrenToRender}
         </CheckboxWrap>
       </CheckboxGroupContext.Provider>

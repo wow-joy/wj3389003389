@@ -92,6 +92,9 @@ const Wrap = styled.div<{
       p.$type === 'error' ? p.theme.palette.error.main : p.theme.palette.text.secondary};
   }
 `;
+/**
+ * 警告标题
+ */
 export const AlertTitle = withWowTheme(
   styled.div`
     font-size: 16px;
@@ -100,13 +103,37 @@ export const AlertTitle = withWowTheme(
   'WowAlertTitle-root',
 );
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * 显示的图标，传入ReactNode，传入false不显示图标
+   */
   icon?: React.ReactNode | boolean;
+  /**
+   * Alert三种类型
+   */
   variant?: 'filled' | 'outlined' | 'standard';
+  /**
+   * 显示的安全级别
+   */
   severity?: 'success' | 'info' | 'warning' | 'error' | 'question';
+  /**
+   * 显示的颜色，优先级高于severity
+   */
   color?: 'success' | 'info' | 'warning' | 'error' | 'question';
+  /**
+   * 大小
+   */
   size?: 'small' | 'medium' | 'large';
+  /**
+   * 每种安全级别对应的图标映射，可自定义
+   */
   iconMapping?: Record<'success' | 'info' | 'warning' | 'error' | 'question', React.ReactNode>;
+  /**
+   * Alert右侧操作
+   */
   action?: React.ReactNode;
+  /**
+   * 提供onClose会出现默认的关闭按钮，onClose对应该按钮的点击事件
+   */
   onClose?: (e: React.MouseEvent<any, MouseEvent>) => void;
 }
 const filledIcons = {

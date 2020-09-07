@@ -23,7 +23,13 @@ const StyleButtonBase = styled.button`
 `;
 
 export interface Props extends React.HTMLAttributes<HTMLElement> {
+  /**
+   * 波纹效果
+   */
   enableTouchRipple?: boolean;
+  /**
+   * 设置center，波纹从中间扩散，否则点击位置扩散
+   */
   center?: boolean;
   component?: keyof JSX.IntrinsicElements;
   type?: string;

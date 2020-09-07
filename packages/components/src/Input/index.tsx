@@ -1,18 +1,32 @@
-import React, { useRef } from 'react';
-import styled, { withWowTheme, css, borderCss, DefaultTheme } from '@wowjoy/styled';
-import { useControlState, useForkRef } from '@wowjoy/hooks';
+import React, { useRef, useCallback } from 'react';
+import styled, { useWowTheme, css, borderCss, DefaultTheme } from '@wowjoy/styled';
+import { useControlState, useForkRef, setRef } from '@wowjoy/hooks';
 import { CloseFillCircle } from '@wowjoy/icons';
 import clsx from 'clsx';
 import InputBase from '../InputBase';
 
 const wrapCss = css<PropsWithoutSize>`
-  padding: 7px 10px;
-  font-size: ${p => p.sizeOpt[p.size].fontSize}px;
+  padding: 4px 10px;
+  font-size: 14px;
+  &.WowInput-sm {
+    padding: 0px 10px;
+    font-size: 12px;
+  }
+  &.WowInput-lg {
+    padding: 8px 10px;
+    font-size: 16px;
+  }
 `;
 const placeholderCss = css<PropsWithoutSize>`
   &::placeholder {
-    font-size: ${p => p.sizeOpt[p.size].fontSize}px;
-    line-height: ${p => p.sizeOpt[p.size].fontSize}px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  &.WowInput-sm::placeholder {
+    font-size: 12px;
+  }
+  &.WowInput-lg::placeholder {
+    font-size: 16px;
   }
   &:placeholder-shown {
     color: ${p => p.theme.palette.disabled};
@@ -20,7 +34,7 @@ const placeholderCss = css<PropsWithoutSize>`
   }
 `;
 
-const StyleInput = styled(InputBase)<any>`
+const StyleInput = styled(InputBase)<React.InputHTMLAttributes<HTMLInputElement> & any>`
   ${borderCss}
   ${wrapCss}
   ${placeholderCss}
@@ -34,7 +48,6 @@ const Wrap = styled.span<PropsWithoutSize>`
   display: inline-flex;
   align-items: center;
   .WowInput-input {
-    font-size: ${p => p.sizeOpt[p.size].fontSize}px;
     ${placeholderCss}
   }
   &:hover .WowInput-clear-visible {
@@ -50,17 +63,6 @@ const Clear = styled(CloseFillCircle)`
     ${p => p.theme.transitions.easing.easeInOut} 0ms;
 `;
 
-interface SizeOpt {
-  small: {
-    fontSize: number;
-  };
-  medium: {
-    fontSize: number;
-  };
-  large: {
-    fontSize: number;
-  };
-}
 export interface Props extends Omit<React.HTMLAttributes<HTMLElement>, 'size' | 'prefix' | 'ref'> {
   size?: 'small' | 'medium' | 'large';
   allowClear?: boolean;
@@ -72,99 +74,129 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLElement>, 'size' | 
   value?: string | number | string[];
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
-  sizeOpt?: SizeOpt;
   theme?: DefaultTheme;
+  autoComplete?: string;
+  name?: string;
 }
 
 type PropsWithoutSize = Omit<Props, 'size'> & { size: 'small' | 'medium' | 'large' };
 
-const Input: React.FC<Props> = (
-  {
-    placeholder = '请输入',
-    allowClear = false,
-    size = 'medium',
-    sizeOpt = { small: { fontSize: 12 }, medium: { fontSize: 14 }, large: { fontSize: 16 } },
-    prefix,
-    suffix,
-    inputRef,
-    inputProps = {},
-    defaultValue = '',
-    onChange,
-    disabled = false,
-    className,
-    ...props
-  },
-  ref,
-) => {
-  const { theme } = props;
-  const isControlled = 'value' in props;
-  const [value, setValue] = useControlState(isControlled, props.value, defaultValue);
-  const handleChange = e => {
-    onChange?.(e);
-    if (!isControlled) {
-      setValue(e.target.value);
-    }
-  };
-  const selfInputRef = useRef<HTMLInputElement>();
-  const handleInputRef = useForkRef(inputRef, selfInputRef);
+const Input = React.forwardRef<any, Props>(
+  (
+    {
+      placeholder = '请输入',
+      allowClear = false,
+      size = 'medium',
+      prefix,
+      suffix,
+      inputRef,
+      inputProps = {},
+      defaultValue = '',
+      onChange,
+      disabled = false,
+      className,
+      autoComplete,
+      name,
+      ...props
+    },
+    ref,
+  ) => {
+    const theme = useWowTheme();
+    const isControlled = 'value' in props;
+    const [value, setValue] = useControlState(isControlled, props.value, defaultValue);
+    const handleChange = useCallback(
+      e => {
+        console.log('onChange ,,,,,,');
 
-  const handleClear = e => {
-    onChange?.({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
-    if (!isControlled) {
-      setValue('');
-    }
-  };
-  const handleClick = e => {
-    props.onClick?.(e);
-    selfInputRef.current.focus();
-  };
-  if (!suffix && !prefix && !allowClear) {
-    return (
-      <StyleInput
-        {...props}
-        className={clsx(className, { 'Wow-disabled': disabled })}
-        ref={ref}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-        disabled={disabled}
-        size={size}
-        sizeOpt={sizeOpt}
-      />
+        onChange?.(e);
+        if (!isControlled) {
+          setValue(e.target.value);
+        }
+      },
+      [isControlled],
     );
-  }
-  return (
-    <Wrap
-      {...props}
-      onClick={handleClick}
-      className={clsx(className, { 'Wow-disabled': disabled })}
-      size={size}
-      sizeOpt={sizeOpt}
-      disabled={disabled}
-      ref={ref}
-    >
-      {prefix}
-      <InputBase
-        {...inputProps}
-        className={clsx('WowInput-input', inputProps.className)}
-        ref={handleInputRef}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-        disabled={disabled}
-      />
-      {allowClear && (
-        <Clear
-          className={clsx('WowInput-input-clear', {
-            'WowInput-clear-visible': Boolean(value),
-          })}
-          theme={theme}
-          onClick={handleClear}
-        />
-      )}
-      {suffix}
-    </Wrap>
-  );
-};
+    const selfInputRef = useRef<HTMLInputElement>();
+    const handleInputRef = useForkRef(inputRef, selfInputRef);
 
-export default withWowTheme(Input, 'WowInput-root');
+    const handleClear = useCallback(
+      e => {
+        onChange?.({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
+        if (!isControlled) {
+          setValue('');
+        }
+      },
+      [isControlled],
+    );
+    const handleClick = e => {
+      props.onClick?.(e);
+      selfInputRef.current.focus();
+    };
+    if (!suffix && !prefix && !allowClear) {
+      return (
+        <StyleInput
+          {...props}
+          {...inputProps}
+          className={clsx(className, 'WowInput-root', {
+            'Wow-disabled': disabled,
+            'WowInput-sm': size === 'small',
+            'WowInput-lg': size === 'large',
+          })}
+          ref={refValue => {
+            setRef(ref, refValue);
+            setRef(handleInputRef, refValue);
+          }}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          disabled={disabled}
+          size={size}
+          autoComplete={autoComplete}
+          name={name}
+          theme={theme}
+        />
+      );
+    }
+    return (
+      <Wrap
+        {...props}
+        onClick={handleClick}
+        className={clsx(className, {
+          'Wow-disabled': disabled,
+          'WowInput-sm': size === 'small',
+          'WowInput-lg': size === 'large',
+        })}
+        size={size}
+        disabled={disabled}
+        ref={ref}
+        theme={theme}
+      >
+        {prefix}
+        <InputBase
+          {...inputProps}
+          className={clsx('WowInput-input', 'WowInput-root', inputProps.className)}
+          ref={handleInputRef}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          disabled={disabled}
+          autoComplete={autoComplete}
+          name={name}
+        />
+        {allowClear && (
+          <Clear
+            className={clsx('WowInput-input-clear', {
+              'WowInput-clear-visible': Boolean(value),
+            })}
+            theme={theme}
+            onClick={handleClear}
+          />
+        )}
+        {suffix}
+      </Wrap>
+    );
+  },
+);
+
+Input.displayName = 'Input';
+
+export default Input;

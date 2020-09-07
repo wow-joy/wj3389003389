@@ -90,10 +90,26 @@ const Modal = React.forwardRef<any, Props>(
           {...TransitionProps}
           onEnter={handleEnter}
           onExited={handleExited}
+          timeout={{
+            appear: theme.transitions.duration.standard,
+            enter: theme.transitions.duration.enteringScreen,
+            exit: theme.transitions.duration.standard,
+          }}
         >
           <Wrap theme={theme} className={clsx('WowModal-root')}>
             {!hideBackdrop && (
-              <Backdrop in={open} {...BackdropProps} onClick={handleBackdropClick} />
+              <Backdrop
+                in={open}
+                TransitionProps={{
+                  timeout: {
+                    appear: theme.transitions.duration.enteringScreen,
+                    enter: theme.transitions.duration.enteringScreen,
+                    exit: theme.transitions.duration.leavingScreen,
+                  },
+                }}
+                {...BackdropProps}
+                onClick={handleBackdropClick}
+              />
             )}
             {children}
           </Wrap>
@@ -102,5 +118,5 @@ const Modal = React.forwardRef<any, Props>(
     );
   },
 );
-
+Modal.displayName = 'Modal';
 export default Modal;

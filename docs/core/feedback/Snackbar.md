@@ -47,24 +47,44 @@ export default function App() {
 
 import React, { useEffect, useRef } from 'react';
 import { SnackbarProvider, useSnackbar, Button } from '@wowjoy/core';
-
+let i = 0;
+let poem = [
+  <b>道州民－美臣遇明主也——白居易</b>,
+  '道州民，多侏儒，长者不过三尺余。',
+  '市作矮奴年进送，号为道州任土贡。',
+  '任土贡，宁若斯，不闻使人生别离，老翁哭孙母哭儿。',
+  '一自阳城来守郡，不进矮奴频诏问。',
+  '城云臣按六典书，任土贡有不贡无。',
+  '道州水土所生者，只有矮民无矮奴。',
+  '吾君感悟玺书下，岁贡矮奴宜悉罢。',
+  '道州民，老者幼者何欣欣。',
+  '父兄子弟始相保，从此得作良人身。',
+  '道州民，民到于今受其赐，欲说使君先下泪。',
+  '仍恐儿孙忘使君，生男多以阳为字。',
+];
 function Message() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   return (
     <Button
-      color="primary"
+      color="error"
       onClick={() => {
-        enqueueSnackbar(`Time: ${new Date().toLocaleString()}!`);
+        enqueueSnackbar(poem[i <= poem.length - 1 ? i++ : (i = 0)]);
       }}
     >
-      Max 10
+      道州民
     </Button>
   );
 }
 
 export default function App() {
   return (
-    <SnackbarProvider maxSnack={10}>
+    <SnackbarProvider
+      variant="standard"
+      severity="error"
+      icon={false}
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      maxSnack={poem.length}
+    >
       <Message />
     </SnackbarProvider>
   );
@@ -148,7 +168,7 @@ export default function App() {
 ```tsx
 /**
  * title: 消息弹出的位置
- * desc: 垂直方向(vertical): `top` `center` `bottom`, 水平方向`horizontal`: `left` `center` `right`
+ * desc: 垂直方向(vertical)： `top` `center` `bottom`<br /> 水平方向`horizontal`： `left` `center` `right`
  */
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -618,7 +638,7 @@ function Message(props) {
         variant="outlined"
         color="info"
         onClick={() => {
-          enqueueSnackbar(`Time: ${new Date().toLocaleString()}!`, {
+          enqueueSnackbar(`山无棱，天地合，乃敢与君绝`, {
             persist: true,
             severity: 'info',
             onClose: key => () => closeSnackbar(key),
@@ -631,7 +651,7 @@ function Message(props) {
         variant="outlined"
         color="info"
         onClick={() => {
-          enqueueSnackbar(`Time: ${new Date().toLocaleString()}!`, {
+          enqueueSnackbar(`两情若是久长时，又岂在朝朝暮暮`, {
             persist: false,
             severity: 'success',
           });

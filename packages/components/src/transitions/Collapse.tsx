@@ -21,7 +21,7 @@ export const Collapse: React.ForwardRefExoticComponent<CollapseProps> = React.fo
     // @ts-ignore
     const handleRef = useForkRef(childRef, children.ref);
     const defaultTimeout = {
-      appear: theme.transitions.duration.enteringScreen,
+      appear: theme.transitions.duration.standard,
       enter: theme.transitions.duration.enteringScreen,
       exit: theme.transitions.duration.leavingScreen,
     };
@@ -88,3 +88,5 @@ export const Collapse: React.ForwardRefExoticComponent<CollapseProps> = React.fo
     );
   },
 );
+
+Collapse.displayName = 'Collapse';

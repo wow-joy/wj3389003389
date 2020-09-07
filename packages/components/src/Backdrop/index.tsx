@@ -21,13 +21,28 @@ const Template = styled.div`
 `;
 
 export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  /**
+   * 蒙层是否透明
+   */
   invisible?: boolean;
   className?: string;
+  /**
+   * 提供动画组件，默认Fade
+   */
   TransitionComponent?: React.ComponentType;
+  /**
+   * 动画组件的props
+   */
   TransitionProps?: any;
   theme?: DefaultTheme;
+  /**
+   * 蒙层的显示隐藏
+   */
   in?: boolean;
 }
+/**
+ * 背景蒙层
+ */
 const Backdrop: React.FC<Props> = ({
   invisible = false,
   TransitionComponent = Fade,

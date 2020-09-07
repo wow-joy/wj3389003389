@@ -152,8 +152,8 @@ export const defaultTheme: Theme<typeof values> = {
     },
     duration: {
       complex: 375,
-      enteringScreen: 225,
-      leavingScreen: 195,
+      enteringScreen: 0, // 进入延迟
+      leavingScreen: 0, // 离开延迟
       short: 250,
       shorter: 200,
       shortest: 150,

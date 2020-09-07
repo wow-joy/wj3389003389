@@ -64,17 +64,40 @@ const Arrow = styled.div`
 export interface Props {
   children?: React.ReactElement;
   className?: string;
+  /**
+   * 弹出位置
+   * @description 弹出位于元素的位置
+   * @default top
+   */
   placement?: Placement;
+  /**
+   * 弹出内容
+   */
   content: React.ReactNode;
+  /**
+   * 箭头的ref
+   */
   arrowRef?: React.MutableRefObject<HTMLElement>;
+  /**
+   * 整个弹出层的ref
+   */
   popperRef?: React.MutableRefObject<HTMLElement>;
   style?: React.CSSProperties;
+  /**
+   * 显示箭头
+   */
   showArrow?: boolean;
+  /**
+   * 自定义箭头
+   */
   arrow?: React.ReactElement;
   open?: boolean;
   TransitionComponent?: React.ComponentType;
   TransitionProps?: any;
   PortalProps?: PortalProps;
+  /**
+   * 此部分参考popperjs
+   */
   modifiers?: any[];
 }
 

@@ -21,7 +21,7 @@ export const Fade: React.ForwardRefExoticComponent<FadeProps> = React.forwardRef
     // @ts-ignore
     const handleRef = useForkRef(ref, children.ref);
     const defaultTimeout = {
-      appear: theme.transitions.duration.enteringScreen,
+      appear: theme.transitions.duration.standard,
       enter: theme.transitions.duration.enteringScreen,
       exit: theme.transitions.duration.leavingScreen,
     };

@@ -49,7 +49,7 @@ export const Zoom: React.ForwardRefExoticComponent<ZoomProps> = React.forwardRef
         transform: `translate(0,0) ${attrStyles[attr]}(1)`,
       },
       exiting: {
-        opacity: 0,
+        opacity: 1,
         transform: `translate(${offset[0]}, ${offset[1]}) ${attrStyles[attr]}(0)`,
       },
       exited: {
@@ -61,7 +61,7 @@ export const Zoom: React.ForwardRefExoticComponent<ZoomProps> = React.forwardRef
     // @ts-ignore
     const handleRef = useForkRef(ref, children.ref);
     const defaultTimeout = {
-      appear: theme.transitions.duration.enteringScreen,
+      appear: theme.transitions.duration.standard,
       enter: theme.transitions.duration.enteringScreen,
       exit: theme.transitions.duration.leavingScreen,
     };

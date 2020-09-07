@@ -81,29 +81,21 @@ const StartIcon = styled.span`
 const EndIcon = styled.span`
   margin-left: 4px;
 `;
-interface SizeOpt {
-  small: {
-    padding: [number, number];
-    fontSize: number;
-    height: number;
-  };
-  medium: {
-    padding: [number, number];
-    fontSize: number;
-    height: number;
-  };
-  large: {
-    padding: [number, number];
-    fontSize: number;
-    height: number;
-  };
-}
+
 export interface Props extends ButtonBaseProps {
+  /**
+   * button类型
+   */
   variant?: 'contained' | 'outlined' | 'text';
   size?: 'small' | 'medium' | 'large';
-  sizeOpt?: SizeOpt;
   disabled?: boolean;
+  /**
+   * 是否隐藏阴影
+   */
   disableElevation?: boolean;
+  /**
+   * 颜色:对应主题中的颜色定义
+   */
   color?: Colors | 'inherit';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
@@ -117,23 +109,6 @@ const Button = React.forwardRef<any, Props>(
       color = 'inherit',
       disabled = false,
       disableElevation = false,
-      sizeOpt = {
-        small: {
-          padding: [7, 12],
-          fontSize: 12,
-          height: 26,
-        },
-        medium: {
-          padding: [9, 14],
-          fontSize: 14,
-          height: 32,
-        },
-        large: {
-          padding: [11, 20],
-          fontSize: 14,
-          height: 36,
-        },
-      },
       children,
       startIcon,
       endIcon,
@@ -149,7 +124,6 @@ const Button = React.forwardRef<any, Props>(
         theme={theme}
         variant={variant}
         size={size}
-        sizeOpt={sizeOpt}
         $color={color}
         disabled={disabled || loading}
         disableElevation={variant === 'contained' ? disableElevation : true}

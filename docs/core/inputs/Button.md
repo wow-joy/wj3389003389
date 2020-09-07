@@ -42,18 +42,6 @@ export default () => (
     <Button variant="outlined" disabled>
       Outlined
     </Button>
-    <Space />
-    <IconButton size="small">
-      <Delete />
-    </IconButton>
-    <Space />
-    <IconButton size="small" disabled>
-      <Delete />
-    </IconButton>
-    <Space />
-    <IconButton size="small" variant="text">
-      <Delete />
-    </IconButton>
   </>
 );
 ```
@@ -149,48 +137,72 @@ export default () => (
 );
 ```
 
+## IconButton
+
+```tsx
+/**
+ * title: 基本使用color
+ * desc: 属性color设置颜色
+ */
+
+import React from 'react';
+import { IconButton } from '@wowjoy/core';
+import { Delete, CloseCircle } from '@wowjoy/icons';
+const Space = () => <span style={{ marginLeft: 10 }}></span>;
+export default () => (
+  <>
+    <IconButton size="small">
+      <Delete />
+    </IconButton>
+    <IconButton>
+      <Delete />
+    </IconButton>
+    <IconButton size="large">
+      <Delete />
+    </IconButton>
+    <IconButton disabled>
+      <Delete />
+    </IconButton>
+    <Space />
+    <br />
+    <IconButton size="small" color="primary">
+      <Delete />
+    </IconButton>
+    <IconButton color="primary">
+      <Delete />
+    </IconButton>
+    <IconButton size="large" color="primary">
+      <Delete />
+    </IconButton>
+    <IconButton disabled color="primary">
+      <Delete />
+    </IconButton>
+    <Space />
+    <br />
+    <IconButton variant="text" size="small" color="primary">
+      <Delete />
+    </IconButton>
+    <IconButton variant="text" color="primary">
+      <Delete />
+    </IconButton>
+    <IconButton variant="text" size="large" color="primary">
+      <Delete />
+    </IconButton>
+    <IconButton disabled variant="text" color="primary">
+      <Delete />
+    </IconButton>
+  </>
+);
+```
+
 ## Props(继承 ButtonBase)
 
 | 参数             | 说明                   | 类型                                | 默认值    |
 | :--------------- | :--------------------- | :---------------------------------- | :-------- |
 | variant          | 按钮类型               | 'contained' \| 'outlined' \| 'text' | contained |
 | size             | 按钮尺寸               | 'small' \| 'medium' \| 'large'      | medium    |
-| sizeOpt          | 按钮尺寸配置           | SizeOpt                             |
 | disabled         | 禁用                   | boolean                             | false     |
 | disableElevation | 禁用阴影，按钮变得扁平 | boolean                             | false     |
 | href             | 变成 a 标签，添加 href | string                              |           |
 | startIcon        | 前置 icon              | ReactNode                           |           |
 | endIcon          | 后置 icon              | ReactNode                           |           |
-
-### SizeOpt
-
-```
-interface SizeOpt {
-  small: {
-    padding: [number, number];
-    fontSize: number;
-  };
-  medium: {
-    padding: [number, number];
-    fontSize: number;
-  };
-  large: {
-    padding: [number, number];
-    fontSize: number;
-  };
-}
-default {
-      small: {
-        padding: [7, 12],
-        fontSize: 12,
-      },
-      medium: {
-        padding: [9, 14],
-        fontSize: 14,
-      },
-      large: {
-        padding: [11, 20],
-        fontSize: 14,
-      },
-    }
-```

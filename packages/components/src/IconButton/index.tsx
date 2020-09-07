@@ -18,11 +18,17 @@ const StyleIconButton = styled(ButtonBase)<
       background: ${p => p.theme.palette[p.$color].dark1};
     }
   }
+  &.WowIconButton-sm {
+    font-size: 12px;
+  }
+  &.WowIconButton-lg {
+    font-size: 35px;
+  }
   border-radius: 50%;
   opacity: ${p => (p.disabled ? 0.4 : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   padding: 12px;
-  font-size: ${p => p.sizeOpt[p.size].fontSize}px;
+  font-size: 24px;
   background-color: ${p => (p.$color === 'inherit' ? '#F5F5F5' : p.theme.palette[p.$color].main)};
   color: ${p => p.theme.palette[p.$color].contrastText};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -40,21 +46,10 @@ const IconLabel = styled.span`
   align-items: inherit;
   justify-content: inherit;
 `;
-interface SizeOpt {
-  small: {
-    fontSize: number;
-  };
-  medium: {
-    fontSize: number;
-  };
-  large: {
-    fontSize: number;
-  };
-}
+
 export interface Props extends ButtonBaseProps {
   variant?: 'contained' | 'text';
   size?: 'small' | 'medium' | 'large';
-  sizeOpt?: SizeOpt;
   disabled?: boolean;
   href?: string;
   color?: Colors;
@@ -66,17 +61,6 @@ const IconButton = React.forwardRef<any, Props>(
       size = 'medium',
       color = 'inherit',
       disabled = false,
-      sizeOpt = {
-        small: {
-          fontSize: 12,
-        },
-        medium: {
-          fontSize: 24,
-        },
-        large: {
-          fontSize: 35,
-        },
-      },
       children,
       ...props
     },
@@ -89,7 +73,6 @@ const IconButton = React.forwardRef<any, Props>(
         center
         variant={variant}
         size={size}
-        sizeOpt={sizeOpt}
         $color={color}
         disabled={disabled}
         {...props}
@@ -97,6 +80,8 @@ const IconButton = React.forwardRef<any, Props>(
         className={clsx('WowIconButton-root', props.className, {
           'WowIconButton-text': variant === 'text',
           'WowIconButton-disabled': disabled,
+          'WowIconButton-sm': size === 'small',
+          'WowIconButton-lg': size === 'large',
         })}
       >
         <IconLabel className="WowIconButton-label">{children}</IconLabel>

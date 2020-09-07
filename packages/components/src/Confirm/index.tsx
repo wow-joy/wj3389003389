@@ -66,6 +66,9 @@ export interface Props extends ModalProps {
   desc?: React.ReactElement;
   className?: string;
   style?: React.CSSProperties;
+  /**
+   * 确认关闭按钮是否平级
+   */
   equal?: boolean;
   onOk?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => any;
   loading?: boolean;

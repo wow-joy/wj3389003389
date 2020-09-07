@@ -9,8 +9,8 @@ const Selection = styled.div<any>`
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
-const Select: React.FC<Props> = ({ ...props }) => {
-  return <Selection tabIndex="0" {...props}></Selection>;
+const Select: React.FC<Props> = ({ ...props }, ref) => {
+  return <Selection tabIndex="0" {...props} ref={ref}></Selection>;
 };
 
 export default withWowTheme(Select, 'WowSelect-root');

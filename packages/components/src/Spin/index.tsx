@@ -35,13 +35,15 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
   indicator?: React.ReactNode;
 }
 
-const Spin = React.forwardRef<any, Props>(({ spinning = true, indicator, children, ...props }) => {
-  return (
-    <Wrap {...props}>
-      {spinning && <LoadingWrap>{indicator || <Loading />}</LoadingWrap>}
-      <BlurWrap spinning={spinning}>{children}</BlurWrap>
-    </Wrap>
-  );
-});
+const Spin = React.forwardRef<any, Props>(
+  ({ spinning = true, indicator, children, ...props }, ref) => {
+    return (
+      <Wrap {...props} ref={ref}>
+        {spinning && <LoadingWrap>{indicator || <Loading />}</LoadingWrap>}
+        <BlurWrap spinning={spinning}>{children}</BlurWrap>
+      </Wrap>
+    );
+  },
+);
 
 export default Spin;

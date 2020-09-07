@@ -35,18 +35,21 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onCha
 }
 
 const RadioGroup = React.forwardRef<any, Props>(
-  ({
-    defaultValue,
-    disabled,
-    name,
-    options,
-    optionType = 'radio',
-    size,
-    buttonVariant = 'contained',
-    onChange,
-    children,
-    ...props
-  }) => {
+  (
+    {
+      defaultValue,
+      disabled,
+      name,
+      options,
+      optionType = 'radio',
+      size,
+      buttonVariant = 'contained',
+      onChange,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const theme = useWowTheme();
     const [value, setValue] = useControlState('value' in props, props.value, defaultValue);
     // 子组件Radio的value注册
@@ -125,10 +128,10 @@ const RadioGroup = React.forwardRef<any, Props>(
           name,
           size,
           buttonVariant,
-          registe,
+          regist: registe,
         }}
       >
-        <RadioWrap {...props} theme={theme} onKeyDown={handleKeyDown}>
+        <RadioWrap {...props} theme={theme} onKeyDown={handleKeyDown} ref={ref}>
           {childrenToRender}
         </RadioWrap>
       </RadioGroupContext.Provider>

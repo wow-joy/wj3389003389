@@ -93,6 +93,9 @@ interface EventTarget {
   disabled: boolean;
 }
 export interface Props extends Omit<React.HTMLAttributes<HTMLLabelElement>, 'onChange'> {
+  /**
+   * 自动获取焦点
+   */
   autoFocus?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;
@@ -100,6 +103,9 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLLabelElement>, 'onC
   value?: string;
   name?: string;
   inputRef?: React.MutableRefObject<HTMLInputElement> | ((instance: HTMLInputElement) => void);
+  /**
+   * 使用IconButton实现，注入IconButton的样式
+   */
   IconButtonProps?: IconButtonProps;
   onChange?: (e: React.MouseEvent & { target: EventTarget }) => void;
 }

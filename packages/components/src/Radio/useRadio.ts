@@ -97,7 +97,7 @@ const useRadio = (props: {
   }, []);
 
   useEffect(() => {
-    context?.registe(eventTarget, preValue);
+    context?.regist(eventTarget, preValue);
   }, [value, disabled]);
   return { handleInputRef, handleChange, checked, setChecked, context };
 };

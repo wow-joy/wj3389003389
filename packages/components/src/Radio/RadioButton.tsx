@@ -44,18 +44,21 @@ export interface Props extends Omit<ButtonProps, 'onChange'> {
 }
 
 const RadioButton = React.forwardRef<any, Props>(
-  ({
-    variant,
-    defaultChecked,
-    autoFocus,
-    inputRef,
-    disabled,
-    value,
-    size,
-    children,
-    onChange,
-    ...props
-  }) => {
+  (
+    {
+      variant,
+      defaultChecked,
+      autoFocus,
+      inputRef,
+      disabled,
+      value,
+      size,
+      children,
+      onChange,
+      ...props
+    },
+    ref,
+  ) => {
     const { handleChange, handleInputRef, context, checked } = useRadio({
       isControlled: 'checked' in props,
       inputRef,
@@ -78,6 +81,7 @@ const RadioButton = React.forwardRef<any, Props>(
     return (
       <ButtonSty
         {...props}
+        ref={ref}
         size={context?.size || size}
         theme={theme}
         component="label"

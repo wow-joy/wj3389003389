@@ -6,12 +6,9 @@ title: ButtonBase 按钮
 
 # ButtonBase 按钮
 
-## variant 按钮类型
-
 ```tsx
 /**
- * title: 按钮类型
- * desc: 有三种类型的按钮 Contained Text Outlined
+ * title: 基本使用
  */
 
 import React from 'react';

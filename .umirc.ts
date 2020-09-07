@@ -9,13 +9,7 @@ export default {
     ['en-US', 'English'],
     ['zh-CN', '中文'],
   ],
-  menus: {
-    '/core/layout': [
-      {
-        title: '布局双方都',
-      },
-    ],
-  },
+  menus: {},
   navs: {
     'en-US': [
       {
