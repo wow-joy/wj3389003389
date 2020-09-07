@@ -23,6 +23,7 @@ const Wrap = styled.div`
     }
   }
   &.WowSnackbar-container-horizontal-left {
+    align-items: flex-start;
     left: 20px;
     transform: translateX(0);
     &.WowSnackbar-dense {
@@ -30,6 +31,7 @@ const Wrap = styled.div`
     }
   }
   &.WowSnackbar-container-horizontal-right {
+    align-items: flex-end;
     right: 20px;
     left: unset;
     transform: translateX(0);
@@ -41,6 +43,7 @@ const Wrap = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
