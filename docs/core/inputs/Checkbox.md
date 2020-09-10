@@ -1,10 +1,10 @@
 ---
 group:
   title: Inputs 输入框
-title: Checkbox 单选框
+title: Checkbox 多选框
 ---
 
-# Checkbox 单选框
+# Checkbox 多选框
 
 ```tsx
 /**
@@ -72,7 +72,7 @@ export default () => {
 ```tsx
 /**
  * title: CheckboxGroup组合配置方式
- * desc: 通过配置`options`参数渲染单选框, `optionType`设置Checkbox类型
+ * desc: 通过配置`options`参数渲染多选框, `optionType`设置Checkbox类型
  */
 
 import React, { useState } from 'react';
