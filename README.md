@@ -19,4 +19,5 @@ npm install @wowjoy/core @wowjoy/ui @wowjoy/icons @wowjoy/hooks
 ```bash
 yarn add @wowjoy/core @wowjoy/ui @wowjoy/icons @wowjoy/hooks
 ```
+
 ## 🔨 Usage

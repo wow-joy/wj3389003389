@@ -38,6 +38,7 @@
     }
   },
   "dependencies": {
+    "@hookform/error-message": "^0.0.4",
     "@popperjs/core": "^2.4.4",
     "@types/styled-components": "^5.1.0",
     "@wowjoy/hooks": "^0.0.1-alpha.1",

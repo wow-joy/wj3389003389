@@ -2232,11 +2232,6 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hookform/error-message@^0.0.4":
-  version "0.0.4"
-  resolved "https://r.cnpmjs.org/@hookform/error-message/download/@hookform/error-message-0.0.4.tgz#a499aa62994af44da3d207f6ed01232f43b3a549"
-  integrity sha1-pJmqYplK9E2j0gf27QEjL0OzpUk=
-
 "@hutson/parse-repository-url@^3.0.0":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.2.tgz#98c23c950a3d9b6c8f0daed06da6c3af06981340"
@@ -20498,7 +20493,7 @@ react-helmet-async@^1.0.2:
     react-fast-compare "^3.0.1"
     shallowequal "^1.1.0"
 
-react-hook-form@^6.4.1, react-hook-form@^6.7.0:
+react-hook-form@^6.7.0:
   version "6.7.0"
   resolved "https://r.cnpmjs.org/react-hook-form/download/react-hook-form-6.7.0.tgz#84702b6a56c6c81d7c43cbfbd343e4884dd1e6be"
   integrity sha1-hHAralbGyB18Q8v700PkiE3R5r4=

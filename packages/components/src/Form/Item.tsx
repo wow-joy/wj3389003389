@@ -17,9 +17,9 @@ const FormItemExplain = styled.div`
   color: red;
 `;
 
-export interface ItemProps extends FormItemProps, FormUIState {
+export interface ItemProps extends Omit<FormItemProps, 'required'>, FormUIState {
   name?: string;
-  required?: boolean;
+  required?: boolean | string;
   rules?: ValidationRules;
   defaultValue?: string;
   control?: boolean;
@@ -166,7 +166,7 @@ export const Item: React.FC<ItemProps> = props => {
     ) : (
       <div style={{ height: 20 }} />
     );
-
+  console.log(children);
   return (
     <>
       <FormItem label={noStyle ? false : label} {...formItemPropsWithContext}>
@@ -176,6 +176,8 @@ export const Item: React.FC<ItemProps> = props => {
           position="relative"
           display="flex"
           alignItems="center"
+          flex="auto"
+          maxWidth="100%"
           {...itemControlBoxProps}
         >
           <FormItemContext.Provider

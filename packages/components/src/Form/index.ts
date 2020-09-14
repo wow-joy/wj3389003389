@@ -1,11 +1,11 @@
 import { Form as Form0 } from './Form';
-import { FormItem, FormItemProps } from './FormItem';
-export { useForm, useWatch, useFormContext } from 'react-hook-form';
-
+import { FormItem } from './FormItem';
 import { Item } from './Item';
 import { List } from './List';
 import { Provider } from './Provider';
 import { useForm } from './useForm';
+export { useFormContext, useWatch } from 'react-hook-form';
+export { Form, FormItem, useForm };
 
 type InternalForm = typeof Form0;
 
@@ -22,7 +22,5 @@ Form.Item = Item;
 Form.List = List;
 Form.Provider = Provider;
 Form.useForm = useForm;
-
-export { Form, FormItem };
 
 export default Form;

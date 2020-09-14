@@ -72,16 +72,7 @@ export const FormItem: React.FC<FormItemProps> = ({
           {label}
         </Box>
       )}
-      <Box
-        className="WowFormItem-value"
-        css={`
-          input {
-            height: 32px;
-            width: 100%;
-          }
-        `}
-        {...valueBoxProps}
-      >
+      <Box className="WowFormItem-value" {...valueBoxProps}>
         {children}
       </Box>
     </Box>

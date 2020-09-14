@@ -29,8 +29,9 @@ export interface FormProps extends UseFormOptions, FormUIState {
   onSubmit?: SubmitHandler<FieldValues>;
   onError?: SubmitErrorHandler<FieldValues>;
   form?: ReturnType<typeof useForm>;
-  onValuesChange: (values: any) => void;
+  onValuesChange?: (values: any) => void;
   formRef?: React.Ref<HTMLFormElement>;
+  children: React.ReactElement | React.ReactElement[];
 }
 
 export const Form = React.forwardRef<any, FormProps>(
