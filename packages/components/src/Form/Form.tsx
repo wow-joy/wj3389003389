@@ -1,16 +1,17 @@
+import { useForkRef } from '@wowjoy/hooks';
 import styled from '@wowjoy/styled';
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import React, { useEffect, useImperativeHandle } from 'react';
 import {
+  FieldValues,
   FormProvider,
   SubmitHandler,
   useFormContext,
   UseFormMethods,
   UseFormOptions,
 } from 'react-hook-form';
-import { FieldValues, SubmitErrorHandler } from 'react-hook-form/dist/types/form';
+import { SubmitErrorHandler } from 'react-hook-form/dist/types/form';
 import { FormUIState } from './FormItem';
 import { useForm } from './useForm';
-import { useForkRef } from '@wowjoy/hooks';
 
 const StyledForm = styled.form<{ layout: FormUIState['layout'] }>`
   ${p => p.layout === 'inline' && `display:flex;`}
