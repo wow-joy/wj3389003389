@@ -1,6 +1,7 @@
 import { handleBreakpoints } from './breakpoints';
 import { StyleFunction } from './types';
 import getPath from '../../utils/getPath';
+import { Theme as Theme0 } from '@wowjoy/styled';
 
 export interface StyleOptions<PropKey, Theme extends object> {
   cssProperty?: PropKey | keyof React.CSSProperties | false;
@@ -9,7 +10,7 @@ export interface StyleOptions<PropKey, Theme extends object> {
   transform?: (cssValue: unknown, theme: Theme) => number | string | React.CSSProperties;
 }
 
-function style<PropValue = unknown, PropKey extends string = string, Theme extends object = object>(
+function style<PropValue = unknown, PropKey extends string = string, Theme extends object = Theme0>(
   options: StyleOptions<PropKey, Theme>,
 ): StyleFunction<{ [K in PropKey]?: PropValue } & { theme: Theme }> {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;

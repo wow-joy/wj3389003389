@@ -13,6 +13,8 @@ import {
   sizing,
   spacing,
   typography,
+  variant,
+  VariantProps,
 } from './system';
 import { PropsFor } from './system/types';
 
@@ -27,7 +29,18 @@ export type SpacingProps = PropsFor<typeof spacing>;
 export type TypographyProps = PropsFor<typeof typography>;
 
 export const composeStyleFunction = breakpoints(
-  compose(borders, display, flexbox, grid, palette, positions, sizing, spacing, typography),
+  compose(
+    borders,
+    display,
+    flexbox,
+    grid,
+    palette,
+    positions,
+    sizing,
+    spacing,
+    typography,
+    variant,
+  ),
 );
 
 export type MergeProps = Omit<
@@ -39,7 +52,8 @@ export type MergeProps = Omit<
     PositionsProps &
     SizingProps &
     SpacingProps &
-    TypographyProps,
+    TypographyProps &
+    VariantProps,
   'theme'
 >;
 

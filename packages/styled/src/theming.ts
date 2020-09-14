@@ -110,11 +110,14 @@ export interface ZIndex {
 export interface Shape {
   borderRadius: number;
 }
+export interface Text {
+  fontSize: number;
+}
 export interface Typography {
-  title: number;
-  subtitle: number;
-  body1: number;
-  body2: number;
+  title: Text;
+  subtitle: Text;
+  body1: Text;
+  body2: Text;
 }
 export interface Theme<T extends {} = {}> {
   palette: Partial<Palette>;

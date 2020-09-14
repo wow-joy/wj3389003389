@@ -164,10 +164,10 @@ export const defaultTheme: Theme<typeof values> = {
     borderRadius: 3,
   },
   typography: {
-    title: 18,
-    subtitle: 16,
-    body1: 14,
-    body2: 12,
+    title: { fontSize: 18 },
+    subtitle: { fontSize: 16 },
+    body1: { fontSize: 14 },
+    body2: { fontSize: 12 },
   },
   zIndex: {
     mobileStepper: 1000,
