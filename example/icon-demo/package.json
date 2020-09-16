@@ -1,6 +1,7 @@
 {
+  "private": true,
   "name": "icon-demo",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
