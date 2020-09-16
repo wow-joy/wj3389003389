@@ -15,6 +15,7 @@ export { default as Popover } from './Popover';
 export { default as Popper } from './Popper';
 export { default as Modal } from './Modal';
 export { default as Dialog } from './Dialog';
+export { default as Divider } from './Divider';
 export { default as Confirm, confirm } from './Confirm';
 export { default as Select } from './Select';
 export * from './Radio';
