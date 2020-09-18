@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Theme } from './theming';
 import createTheme from './createTheme';
 
@@ -13,6 +14,10 @@ export const useWowTheme = (): DefaultTheme => {
   const theme = useTheme();
   return theme || createTheme();
 };
+
+export const ThemeContext = React.createContext<Partial<Theme>>(createTheme());
+
+export const ThemeConsumer = ThemeContext.Consumer;
 
 declare module 'styled-components' {
   export interface DefaultTheme extends Partial<Theme> {}

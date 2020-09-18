@@ -17,6 +17,7 @@ export { default as Modal } from './Modal';
 export { default as Dialog } from './Dialog';
 export { default as Divider } from './Divider';
 export { default as Confirm, confirm } from './Confirm';
+export { default as ConfigProvider } from './config-provider';
 export { default as Select } from './Select';
 export * from './Radio';
 export * from './Checkbox';

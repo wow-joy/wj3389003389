@@ -9,6 +9,7 @@
  * */
 import * as React from 'react';
 import { createConfigContext, ConfigConsumerProps, RenderEmptyHandler } from './context';
+import { ThemeContext, createTheme } from '@wowjoy/styled';
 
 export interface ConfigProviderProps {
   getTargetContainer?: () => HTMLElement;
@@ -47,14 +48,25 @@ const ConfigProvider: React.FC<ConfigProviderProps> & {
 
   const renderProvider = (context: ConfigConsumerProps) => {
 
+    const {
+      children,
+      ...others
+    } = props;
+
     const config: ConfigConsumerProps = {
       ...context,
       getPrefixCls: getPrefixClsWrapper(context),
-      ...props,
+      ...others,
     };
 
+    const theme = createTheme();
+
     return (
-      <ConfigContext.Provider value={config}></ConfigContext.Provider>
+      <ThemeContext.Provider value={theme}>
+        <ConfigContext.Provider value={config}>
+          { children }
+        </ConfigContext.Provider>
+      </ThemeContext.Provider>
     )
 
   }

@@ -182,7 +182,7 @@ export const defaultTheme: Theme<typeof values> = {
 };
 
 const createTheme = (theme: Partial<Theme> = {}) => {
-  return deepmerge(defaultTheme, theme);
+  return deepmerge(defaultTheme, theme) as Partial<Theme>;
 };
 
 export default createTheme;
