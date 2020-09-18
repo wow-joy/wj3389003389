@@ -75,6 +75,12 @@ export default () => {
 ```
 
 ## API
+
+### 静态属性
+### ConfigConsumer
+`ConfigContext`的`consumer`
+
+### 属性
 | 参数 | 说明 | 类型 | 默认值 |
 | :--- | :--- | :--- | :---   |
 | prefixCls | 全局组件类名前缀, ex: `ant-modal`, `ant`就是前缀 | string | wowjoy
