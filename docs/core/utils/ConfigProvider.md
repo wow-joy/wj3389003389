@@ -37,6 +37,43 @@ export default () => {
 
 ```
 
+## 自定义全局渲染empty组件
+
+```tsx
+/**
+* title: 自定义全局渲染empty组件
+* desc: 通过ConfigProvider设置全局empty组件
+*/
+import * as React from 'react';
+import { ConfigProvider } from '@wowjoy/core';
+import { Theme, ThemeConsumer } from '@wowjoy/styled';
+
+const Empty: React.FC<any> = () => {
+  
+  return (
+    <div>empty</div>
+  )
+  
+}
+
+export default () => {
+  
+  return (
+    <ConfigProvider renderEmpty={() => <Empty />}>
+      <ConfigProvider.ConfigConsumer>
+        { ({ renderEmpty }: ConfigConsumerProps) => {
+
+          return renderEmpty();
+          
+        }}
+      </ConfigProvider.ConfigConsumer>
+    </ConfigProvider>
+  )
+  
+};
+
+```
+
 ## API
 | 参数 | 说明 | 类型 | 默认值 |
 | :--- | :--- | :--- | :---   |

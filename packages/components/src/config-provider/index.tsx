@@ -26,7 +26,8 @@ const { ConfigContext, ConfigConsumer } = context;
 
 // @ts-ignore
 const ConfigProvider: React.FC<ConfigProviderProps> & {
-  _ConfigContext: typeof context.ConfigContext;
+  _ConfigContext: typeof context.ConfigContext,
+  ConfigConsumer: typeof context.ConfigConsumer
 } = function (props) {
 
   const { prefixCls } = props;
@@ -81,5 +82,8 @@ const ConfigProvider: React.FC<ConfigProviderProps> & {
 ConfigProvider.displayName = 'ConfigProvider';
 
 ConfigProvider._ConfigContext = ConfigContext;
+
+
+ConfigProvider.ConfigConsumer = ConfigConsumer;
 
 export default ConfigProvider;
