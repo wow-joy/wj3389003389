@@ -1,3 +1,4 @@
+export { default as Affix } from './Affix';
 export { default as Alert, AlertTitle } from './Alert';
 export * from './Snackbar';
 export { default as ButtonBase } from './ButtonBase';
