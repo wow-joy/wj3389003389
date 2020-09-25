@@ -82,11 +82,12 @@ const EndIcon = styled.span`
   margin-left: 4px;
 `;
 
+export type ButtonType =  'contained' | 'outlined' | 'text';
 export interface Props extends ButtonBaseProps {
   /**
    * button类型
    */
-  variant?: 'contained' | 'outlined' | 'text';
+  variant?: ButtonType;
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   /**
