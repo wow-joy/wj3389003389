@@ -167,9 +167,9 @@ export default ()=>{
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| cancelText | 取消按钮文字 | string | `取消` |
-| okText | 确认按钮文字 | string | `确定` |
-| okType | 确认按钮类型 | 'contained' \| 'outlined' \| 'text' | `contained` |
+| cancelText | 取消按钮文字 | string | 取消 |
+| okText | 确认按钮文字 | string | 确定 |
+| okType | 确认按钮类型 | `contained` `outlined` `text` | `contained` |
 | okButtonProps | ok 按钮 props | [ButtonProps](/core/inputs/button#props继承-buttonbase) | - |
 | cancelButtonProps | cancel 按钮 props | [ButtonProps](/core/inputs/button#props继承-buttonbase) | - |
 | content | 确认框的内容 | string \| ReactNode \| () => ReactNode | - |

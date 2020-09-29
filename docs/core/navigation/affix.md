@@ -18,7 +18,7 @@ import { Affix, Button, Alert } from '@wowjoy/core';
 
 export default ()=>{
   return(
-    <> 
+    <>
       <Affix>
         <Alert severity="success">Affix top</Alert>
       </Affix>

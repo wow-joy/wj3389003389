@@ -20,6 +20,7 @@ export { default as PopConfirm } from './PopConfirm';
 export { default as Popover } from './Popover';
 export { default as Popper } from './Popper';
 export { default as Portal } from './Portal';
+export { default as Progress } from './Progress';
 export * from './Radio';
 export { default as Search } from './Search';
 export { default as Select } from './Select';
