@@ -44,6 +44,7 @@
     "@wowjoy/hooks": "^0.0.4",
     "@wowjoy/icons": "^0.0.4",
     "@wowjoy/styled": "^0.0.4",
+    "@wowjoy/types": "^0.0.4",
     "clsx": "^1.1.0",
     "lodash": "^4.17.20",
     "react-hook-form": "^6.7.0",
