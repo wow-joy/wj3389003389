@@ -166,7 +166,7 @@ export const Item: React.FC<ItemProps> = props => {
     ) : (
       <div style={{ height: 20 }} />
     );
-  console.log(children);
+
   return (
     <>
       <FormItem label={noStyle ? false : label} {...formItemPropsWithContext}>
