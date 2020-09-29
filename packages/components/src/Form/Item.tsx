@@ -21,7 +21,7 @@ export interface ItemProps extends Omit<FormItemProps, 'required'>, FormUIState 
   name?: string;
   required?: boolean | string;
   rules?: ValidationRules;
-  defaultValue?: string;
+  defaultValue?: string | ReadonlyArray<string> | number | boolean;
   control?: boolean;
   valuePropName?: string;
   trigger?: string;
