@@ -27,5 +27,6 @@ export { default as Select } from './Select';
 export * from './Snackbar';
 export { default as Spin } from './Spin';
 export { default as TextField } from './TextField';
+export { default as Timeline } from './Timeline';
 export { default as Tooltip } from './Tooltip';
 export * from './transitions';

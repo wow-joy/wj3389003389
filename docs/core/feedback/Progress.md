@@ -160,7 +160,6 @@ export default ()=>{
       setV(v);
     }
   }
-  console.log(v);
   return(
     <div style={{ maxWidth: 400}}>
       <Progress percent={v} status="active" />
