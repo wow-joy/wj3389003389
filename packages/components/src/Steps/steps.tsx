@@ -1,9 +1,3 @@
-/*
- * @Author: guolili
- * @Date: 2020-08-25 15:42:32
- * @Last Modified by: guolili
- * @Last Modified time: 2020-08-25 16:16:05
- */
 
 import React, { FC, useEffect, useState, ReactDOM } from 'react';
 import styled, { useWowTheme, withWowTheme } from '@wowjoy/styled';
