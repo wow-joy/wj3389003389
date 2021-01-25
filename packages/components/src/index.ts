@@ -30,4 +30,5 @@ export { default as TextField } from './TextField';
 export { default as Timeline } from './Timeline';
 export { default as Tooltip } from './Tooltip';
 export { default as Steps } from './Steps';
+export { default as BackTop } from './BackTop';
 export * from './transitions';
