@@ -15,6 +15,7 @@ export { default as IconButton } from './IconButton';
 export { default as Input } from './Input';
 export { default as InputBase } from './InputBase';
 export { default as InputGroup } from './InputGroup';
+export { default as InputNumber } from './InputNumber';
 export { default as Modal } from './Modal';
 export { default as PopConfirm } from './PopConfirm';
 export { default as Popover } from './Popover';
