@@ -6,6 +6,7 @@ export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export * from './Checkbox';
 export { default as ClickAwayListener } from './ClickAwayListener';
+export { default as Comment } from './Comment';
 export { default as ConfigProvider } from './config-provider';
 export { default as Confirm, confirm } from './Confirm';
 export { default as Dialog } from './Dialog';
