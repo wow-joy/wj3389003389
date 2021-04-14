@@ -3,7 +3,7 @@
  * config provider
  * @module @wowjoy/core/config-provider
  * @author lh
- * @since 0.0.4
+ * @since 0.0.5
  * @version 1.0.0
  *
  * */
