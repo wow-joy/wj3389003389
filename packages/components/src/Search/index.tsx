@@ -29,6 +29,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement>, React.DOMAttri
   onSearch?: (value: string | number | string[]) => void;
   disabled?: boolean;
   allowClear?: boolean;
+  placeholder?: string;
 }
 
 const Search: React.FC<Props> = (
@@ -37,6 +38,7 @@ const Search: React.FC<Props> = (
     allowClear = false,
     disabled = false,
     defaultValue = '',
+    placeholder = '请输入',
     onChange,
     onSearch,
     theme,
@@ -69,6 +71,7 @@ const Search: React.FC<Props> = (
             handleSearch();
           }
         }}
+        placeholder={placeholder}
       />
       <StyleIconWrap theme={theme} onClick={handleSearch}>
         <SearchIcon />
